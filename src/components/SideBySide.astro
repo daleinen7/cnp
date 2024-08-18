@@ -1,0 +1,14 @@
+---
+import PortableText from './PortableText.astro';
+
+export interface Props {
+  headline: string;
+  text: any[];
+}
+const { headline, text } = Astro.props;
+---
+
+<div class="side-by-side">
+  <h3>{headline}</h3>
+  <PortableText portableText={text} />
+</div>

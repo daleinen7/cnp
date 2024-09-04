@@ -3,6 +3,12 @@ interface Props {
   title: string;
 }
 
+import '@fontsource/lato/100.css';
+import '@fontsource/lato/300.css';
+import '@fontsource/lato/400.css';
+import '@fontsource/lato/700.css';
+import '@fontsource/lato/900.css';
+
 const { title } = Astro.props;
 ---
 
@@ -20,11 +26,16 @@ const { title } = Astro.props;
     <slot />
   </body>
 </html>
+
 <style is:global>
   :root {
-    --accent: 136, 58, 234;
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
+    --accent: #482c84;
+    --accent-light: #663492;
+    --accent-dark: #312478;
+    --base-light: #f5f5f5;
+    --base-dark: #13151a;
+    --light-gray: #f8f8f8e9;
+    --dark-gray: #5b5a5a;
     --accent-gradient: linear-gradient(
       45deg,
       rgb(var(--accent)),
@@ -33,18 +44,14 @@ const { title } = Astro.props;
     );
   }
   html {
-    font-family: system-ui, sans-serif;
-    background: #13151a;
+    font-family: 'Lato', sans-serif;
+    background: var(--base-light);
   }
-  code {
-    font-family:
-      Menlo,
-      Monaco,
-      Lucida Console,
-      Liberation Mono,
-      DejaVu Sans Mono,
-      Bitstream Vera Sans Mono,
-      Courier New,
-      monospace;
+  body {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    color: var(--base-dark);
+    font-family: 'Lato', sans-serif;
   }
 </style>

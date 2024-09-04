@@ -1,0 +1,86 @@
+---
+import type { SanityDocument } from '@sanity/client';
+import { loadQuery } from '../sanity/lib/loadQuery';
+import Layout from '../layouts/Layout.astro';
+import Headline from '../components/Headline.astro';
+import SideBySide from '../components/SideBySide.astro';
+import Hero from '../components/Hero.astro';
+import BasicContent from '../components/BasicContent.astro';
+import FAQ from '../components/FAQ.astro';
+
+export async function getStaticPaths() {
+  const { data: page } = await loadQuery<SanityDocument[]>({
+    query: `*[_type == "page"]`,
+  });
+
+  return page.map((page: SanityDocument) => {
+    const { slug } = page;
+    return {
+      params: {
+        slug: slug.current,
+      },
+    };
+  });
+}
+
+const { params } = Astro;
+
+const { data: page } = await loadQuery<SanityDocument>({
+  query: `*[_type == "page" && slug.current == $slug][0]{
+    title,
+    "components": components[]{
+      ...,
+      _type == 'hero' => {
+        _type,
+        heroText,
+        "heroImage": heroImage.asset->url
+      },
+      _type == 'headline' => {
+        _type,
+        headline
+      },
+      _type == 'sideBySide' => {
+        _type,
+        headline,
+        text,
+        "image": image.asset->url
+      }
+    }
+  }`,
+  params,
+});
+
+const components = page.components || [];
+---
+
+<Layout title={page.title}>
+  {
+    components.map((component: any) => {
+      switch (component._type) {
+        case 'headline':
+          return <Headline headline={component.headline} />;
+        case 'sideBySide':
+          return (
+            <SideBySide
+              headline={component.headline}
+              text={component.text}
+              image={component.image}
+            />
+          );
+        case 'hero':
+          return (
+            <Hero
+              heroText={component.heroText}
+              heroImage={component.heroImage}
+            />
+          );
+        case 'basicContent':
+          return <BasicContent content={component.content} />;
+        case 'faq':
+          return <FAQ faqs={component.faqs} />;
+        default:
+          return null;
+      }
+    })
+  }
+</Layout>

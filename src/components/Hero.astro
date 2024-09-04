@@ -1,0 +1,46 @@
+---
+import { PortableText } from 'astro-portabletext';
+
+const { heroText, heroImage } = Astro.props;
+---
+
+<style>
+  .background {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    color: var(--base-light);
+    text-align: left;
+    position: relative;
+    height: 20rem;
+    object-fit: cover;
+    overflow: hidden;
+    width: 100%;
+
+    img {
+      height: auto;
+      top: 0;
+      position: absolute;
+      z-index: -1;
+    }
+
+    .content {
+      padding: 2rem;
+    }
+
+    p {
+      text-wrap: balance;
+    }
+  }
+  h2 {
+    font-size: 2rem;
+  }
+</style>
+
+<div class="background">
+  <img src={heroImage} alt="" />
+  <div class="content">
+    <PortableText value={heroText} />
+  </div>
+</div>

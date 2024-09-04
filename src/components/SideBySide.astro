@@ -1,14 +1,35 @@
 ---
 import PortableText from './PortableText.astro';
 
-export interface Props {
-  headline: string;
-  text: any[];
-}
-const { headline, text } = Astro.props;
+const { headline, text, image } = Astro.props;
 ---
 
 <div class="side-by-side">
-  <h3>{headline}</h3>
-  <PortableText portableText={text} />
+  <img src={image} alt="Placeholder image" />
+  <div class="info">
+    <h3>{headline}</h3>
+    <PortableText portableText={text} />
+  </div>
 </div>
+
+<style>
+  .side-by-side {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+  h3 {
+    margin: 0;
+  }
+  .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 50%;
+  }
+  img {
+    max-width: 50%;
+    height: auto;
+  }
+</style>

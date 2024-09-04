@@ -18,19 +18,16 @@ export const page = defineType({
         source: 'title',
       },
     }),
-    // defineField({
-    //   name: 'content',
-    //   title: 'Content',
-    //   type: 'blockContent',
-    // }),
     defineField({
       name: 'components',
       type: 'array',
       title: 'Block Content',
       of: [
-        // { type: 'blockContent' },
         { type: 'headline' },
         { type: 'sideBySide' },
+        { type: 'hero' },
+        { type: 'basicContent' },
+        { type: 'faq' },
       ],
     }),
   ],

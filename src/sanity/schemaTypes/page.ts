@@ -27,7 +27,7 @@ export const page = defineType({
         { type: 'sideBySide' },
         { type: 'hero' },
         { type: 'basicContent' },
-        { type: 'faq' },
+        { type: 'faqs' },
       ],
     }),
   ],

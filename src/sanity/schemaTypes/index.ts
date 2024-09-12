@@ -4,7 +4,7 @@ import { sideBySide } from './sideBySide';
 import { page } from './page';
 import { hero } from './hero';
 import { basicContent } from './basicContent';
-import { faq } from './faq';
+import faqs from './faq';
 
 export const schema = [
   page,
@@ -13,5 +13,5 @@ export const schema = [
   blockContent,
   sideBySide,
   basicContent,
-  faq,
+  faqs,
 ];

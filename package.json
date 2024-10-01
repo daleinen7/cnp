@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.3",
     "@astrojs/react": "^3.6.2",
+    "@fontsource-variable/montserrat": "^5.1.0",
     "@fontsource/lato": "^5.0.22",
     "@portabletext/types": "^2.0.13",
     "@sanity/astro": "^3.1.4",
@@ -21,7 +22,7 @@
     "@sanity/visual-editing": "^2.1.8",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "astro": "^4.15.1",
+    "astro": "^4.15.9",
     "astro-portabletext": "^0.10.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

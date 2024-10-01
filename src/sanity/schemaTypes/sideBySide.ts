@@ -21,5 +21,15 @@ export const sideBySide = defineType({
       type: 'array',
       of: [{ type: 'block' }],
     }),
+    defineField({
+      name: 'ctaText',
+      title: 'CTA Text',
+      type: 'string',
+    }),
+    defineField({
+      name: 'ctaLink',
+      title: 'CTA Link',
+      type: 'string',
+    }),
   ],
 });

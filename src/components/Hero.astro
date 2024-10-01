@@ -1,7 +1,7 @@
 ---
 import { PortableText } from 'astro-portabletext';
 
-const { heroText, heroImage } = Astro.props;
+const { heroText, heroImage, ctaText, ctaLink } = Astro.props;
 ---
 
 <style>
@@ -43,4 +43,11 @@ const { heroText, heroImage } = Astro.props;
   <div class="content">
     <PortableText value={heroText} />
   </div>
+  {
+    ctaText && ctaLink && (
+      <a href={ctaLink} class="button">
+        {ctaText}
+      </a>
+    )
+  }
 </div>

@@ -15,5 +15,15 @@ export const hero = defineType({
       title: 'Hero Image',
       type: 'image',
     }),
+    defineField({
+      name: 'ctaText',
+      title: 'CTA Text',
+      type: 'string',
+    }),
+    defineField({
+      name: 'ctaLink',
+      title: 'CTA Link',
+      type: 'string',
+    }),
   ],
 });

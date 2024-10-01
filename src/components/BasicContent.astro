@@ -2,10 +2,6 @@
 import { PortableText } from 'astro-portabletext';
 
 const { content } = Astro.props;
-
-console.log(content);
 ---
 
-<div>
-  <PortableText value={content} />
-</div>
+<PortableText value={content} />

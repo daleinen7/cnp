@@ -1,9 +1,9 @@
 // create a page using the other schema blocks
 import { defineField, defineType } from 'sanity';
 
-export const page = defineType({
-  name: 'page',
-  title: 'Page',
+export const blog = defineType({
+  name: 'blog',
+  title: 'Blog',
   type: 'document',
   fields: [
     defineField({
@@ -16,11 +16,6 @@ export const page = defineType({
       options: {
         source: 'title',
       },
-    }),
-    defineField({
-      name: 'featuredImage',
-      title: 'Featured Image',
-      type: 'image',
     }),
     defineField({
       name: 'components',

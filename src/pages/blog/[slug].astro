@@ -1,20 +1,20 @@
 ---
 import type { SanityDocument } from '@sanity/client';
-import { loadQuery } from '../sanity/lib/loadQuery';
-import Layout from '../layouts/Layout.astro';
-import Headline from '../components/Headline.astro';
-import SideBySide from '../components/SideBySide.astro';
-import Hero from '../components/Hero.astro';
-import BasicContent from '../components/BasicContent.astro';
-import FAQ from '../components/FAQ.astro';
+import { loadQuery } from '../../sanity/lib/loadQuery';
+import Layout from '../../layouts/Layout.astro';
+import Headline from '../../components/Headline.astro';
+import SideBySide from '../../components/SideBySide.astro';
+import Hero from '../../components/Hero.astro';
+import BasicContent from '../../components/BasicContent.astro';
+import FAQ from '../../components/FAQ.astro';
 
 export async function getStaticPaths() {
-  const { data: page } = await loadQuery<SanityDocument[]>({
-    query: `*[_type == "page"]`,
+  const { data: blog } = await loadQuery<SanityDocument[]>({
+    query: `*[_type == "blog"]`,
   });
 
-  return page.map((page: SanityDocument) => {
-    const { slug } = page;
+  return blog.map((blog: SanityDocument) => {
+    const { slug } = blog;
     return {
       params: {
         slug: slug.current,
@@ -25,8 +25,8 @@ export async function getStaticPaths() {
 
 const { params } = Astro;
 
-const { data: page } = await loadQuery<SanityDocument>({
-  query: `*[_type == "page" && slug.current == $slug][0]{
+const { data: blog } = await loadQuery<SanityDocument>({
+  query: `*[_type == "blog" && slug.current == $slug][0]{
     title,
     "components": components[]{
       ...,
@@ -51,10 +51,10 @@ const { data: page } = await loadQuery<SanityDocument>({
   params,
 });
 
-const components = page.components || [];
+const components = blog.components || [];
 ---
 
-<Layout title={page.title}>
+<Layout title={blog.title}>
   {
     components.map((component: any) => {
       switch (component._type) {

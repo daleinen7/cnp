@@ -26,6 +26,8 @@ const renderComponent = (component) => {
       );
     case 'basicContent':
       return <PortableText value={component.content} />;
+    case 'spacer':
+      return <div style={{ height: component.height }}></div>;
     default:
       return null;
   }

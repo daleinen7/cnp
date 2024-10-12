@@ -7,6 +7,7 @@ import SideBySide from '../components/SideBySide.astro';
 import Hero from '../components/Hero.astro';
 import BasicContent from '../components/BasicContent.astro';
 import FAQ from '../components/FAQ.astro';
+import CtaCard from '../components/CtaCard.astro';
 
 export async function getStaticPaths() {
   const { data: page } = await loadQuery<SanityDocument[]>({
@@ -30,14 +31,27 @@ const { data: page } = await loadQuery<SanityDocument>({
     title,
     "components": components[]{
       ...,
-      _type == 'hero' => {
+      _type == 'ctaCards' => {
         _type,
-        heroText,
-        "heroImage": heroImage.asset->url
+        ctaCards[]{
+          ...,
+          _type == 'ctaCard' => {
+            _type,
+            headline,
+            text,
+            ctaText,
+            ctaLink
+          }
+        }
       },
       _type == 'headline' => {
         _type,
         headline
+      },
+      _type == 'hero' => {
+        _type,
+        heroText,
+        "heroImage": heroImage.asset->url
       },
       _type == 'sideBySide' => {
         _type,
@@ -45,7 +59,6 @@ const { data: page } = await loadQuery<SanityDocument>({
         text,
         "image": image.asset->url
       }
-
     }
   }`,
   params,
@@ -58,19 +71,17 @@ const components = page.components || [];
   {
     components.map((component: any) => {
       switch (component._type) {
+        case 'basicContent':
+          return <BasicContent content={component.content} />;
+        case 'ctaCard':
+          return <CtaCard ctaCards={component.ctaCards} />;
+        case 'faqs':
+          return <FAQ faqs={component.faq} />;
         case 'headline':
           return (
             <Headline
               headline={component.headline}
               headingLevel={component.headingLevel}
-            />
-          );
-        case 'sideBySide':
-          return (
-            <SideBySide
-              headline={component.headline}
-              text={component.text}
-              image={component.image}
             />
           );
         case 'hero':
@@ -82,12 +93,16 @@ const components = page.components || [];
               ctaLink={component.ctaLink}
             />
           );
-        case 'basicContent':
-          return <BasicContent content={component.content} />;
+        case 'sideBySide':
+          return (
+            <SideBySide
+              headline={component.headline}
+              text={component.text}
+              image={component.image}
+            />
+          );
         case 'spacer':
           return <div style={{ height: component.height }} />;
-        case 'faqs':
-          return <FAQ faqs={component.faq} />;
         default:
           return null;
       }

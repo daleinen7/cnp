@@ -18,16 +18,12 @@ export const page = defineType({
       },
     }),
     defineField({
-      name: 'featuredImage',
-      title: 'Featured Image',
-      type: 'image',
-    }),
-    defineField({
       name: 'components',
       type: 'array',
       title: 'Block Content',
       of: [
         { type: 'basicContent' },
+        { type: 'ctaCards' },
         { type: 'faqs' },
         { type: 'headline' },
         { type: 'hero' },

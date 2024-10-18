@@ -1,0 +1,36 @@
+---
+import PortableText from './PortableText.astro';
+
+interface Card {
+  headline?: string;
+  text?: string;
+  ctaText?: string;
+  ctaLink?: string;
+}
+
+const { ctaCards } = Astro.props;
+---
+
+{
+  ctaCards.map((card: Card) => {
+    const { headline, text, ctaText, ctaLink } = card;
+    return (
+      <div class="card">
+        {headline && <h3>{headline}</h3>}
+        {text && <PortableText portableText={text} />}
+        {ctaText && ctaLink && <a href={ctaLink}>{ctaText}</a>}
+      </div>
+    );
+  })
+}
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  h3 {
+    margin: 0;
+  }
+</style>

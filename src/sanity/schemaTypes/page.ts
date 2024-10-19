@@ -27,6 +27,8 @@ export const page = defineType({
         { type: 'faqs' },
         { type: 'headline' },
         { type: 'hero' },
+        { type: 'mediaCards' },
+        { type: 'portraitCards' },
         { type: 'sideBySide' },
         { type: 'spacer' },
       ],

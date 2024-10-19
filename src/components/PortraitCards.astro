@@ -1,0 +1,37 @@
+---
+import PortableText from './PortableText.astro';
+
+interface Card {
+  headline?: string;
+  subheadline?: string;
+  portraitLink?: string;
+  image?: string;
+}
+
+const { portraitCardList } = Astro.props;
+---
+
+{
+  portraitCardList.map((card: Card) => {
+    const { image, headline, subheadline, portraitLink } = card;
+    return (
+      <div class="card">
+        {image && <img src={image} />}
+        {headline && <h3>{headline}</h3>}
+        {subheadline && <PortableText portableText={subheadline} />}
+        {portraitLink && <a href={portraitLink}>Learn More</a>}
+      </div>
+    );
+  })
+}
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  h3 {
+    margin: 0;
+  }
+</style>

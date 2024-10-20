@@ -14,10 +14,10 @@ const { heroText, heroImage, ctaText, ctaLink } = Astro.props;
     color: var(--base-light);
     text-align: left;
     position: relative;
-    height: 24rem;
     object-fit: cover;
     overflow: hidden;
     width: 100%;
+    padding: 2rem;
 
     color: white;
 
@@ -29,15 +29,13 @@ const { heroText, heroImage, ctaText, ctaLink } = Astro.props;
       width: 100%;
     }
 
-    .content {
-      padding: 2rem;
+    h2 {
+      font-size: 3.75rem;
+      margin-bottom: 1.5rem;
     }
 
     p {
       text-wrap: balance;
-    }
-    h2 {
-      font-size: 2rem;
     }
   }
 
@@ -51,8 +49,12 @@ const { heroText, heroImage, ctaText, ctaLink } = Astro.props;
     padding: 1rem 2rem;
     font-weight: 700;
     border-radius: 0.5rem;
-    font-size: 1.875rem;
+    font-size: 1.5rem;
     background: var(--light-gray);
+  }
+
+  .button {
+    margin-top: 2rem;
   }
 
   .icon {

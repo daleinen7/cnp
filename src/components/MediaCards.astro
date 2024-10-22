@@ -3,22 +3,24 @@ import PortableText from './PortableText.astro';
 
 interface Card {
   headline?: string;
+  subheadline?: string;
   text?: string;
-  ctaText?: string;
-  ctaLink?: string;
+  media?: string;
+  mediaLink?: string;
 }
 
-const { ctaCards } = Astro.props;
+const { mediaCardList } = Astro.props;
 ---
 
 {
-  ctaCards.map((card: Card) => {
-    const { headline, text, ctaText, ctaLink } = card;
+  mediaCardList.map((card: Card) => {
+    const { headline, subheadline, text, media, mediaLink } = card;
     return (
       <div class="card">
         {headline && <h3>{headline}</h3>}
+        {subheadline && <p>{subheadline}</p>}
         {text && <PortableText portableText={text} />}
-        {ctaText && ctaLink && <a href={ctaLink}>{ctaText}</a>}
+        {media && mediaLink && <a href={mediaLink}>{media}</a>}
       </div>
     );
   })

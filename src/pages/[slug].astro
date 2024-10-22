@@ -7,7 +7,9 @@ import SideBySide from '../components/SideBySide.astro';
 import Hero from '../components/Hero.astro';
 import BasicContent from '../components/BasicContent.astro';
 import FAQ from '../components/FAQ.astro';
-import CtaCard from '../components/CtaCard.astro';
+import CtaCards from '../components/CtaCards.astro';
+import MediaCards from '../components/MediaCards.astro';
+import PortraitCards from '../components/PortraitCards.astro';
 
 export async function getStaticPaths() {
   const { data: page } = await loadQuery<SanityDocument[]>({
@@ -31,19 +33,6 @@ const { data: page } = await loadQuery<SanityDocument>({
     title,
     "components": components[]{
       ...,
-      _type == 'ctaCards' => {
-        _type,
-        ctaCards[]{
-          ...,
-          _type == 'ctaCard' => {
-            _type,
-            headline,
-            text,
-            ctaText,
-            ctaLink
-          }
-        }
-      },
       _type == 'headline' => {
         _type,
         headline
@@ -52,6 +41,13 @@ const { data: page } = await loadQuery<SanityDocument>({
         _type,
         heroText,
         "heroImage": heroImage.asset->url
+      },
+      _type == 'portraitCards' => {
+        _type,
+        portraitCardList[]{
+          ...,
+          "image": image.asset->url
+        }
       },
       _type == 'sideBySide' => {
         _type,
@@ -73,8 +69,8 @@ const components = page.components || [];
       switch (component._type) {
         case 'basicContent':
           return <BasicContent content={component.content} />;
-        case 'ctaCard':
-          return <CtaCard ctaCards={component.ctaCards} />;
+        case 'ctaCards':
+          return <CtaCards ctaCardList={component.ctaCardList} />;
         case 'faqs':
           return <FAQ faqs={component.faq} />;
         case 'headline':
@@ -91,6 +87,16 @@ const components = page.components || [];
               heroImage={component.heroImage}
               ctaText={component.ctaText}
               ctaLink={component.ctaLink}
+            />
+          );
+        case 'mediaCards':
+          return (
+            <MediaCards mediaCardList={component.mediaCardList} />
+          );
+        case 'portraitCards':
+          return (
+            <PortraitCards
+              portraitCardList={component.portraitCardList}
             />
           );
         case 'sideBySide':

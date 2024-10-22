@@ -1,5 +1,6 @@
 ---
 import { PortableText } from 'astro-portabletext';
+import cnpicon from '../images/cnp-icon.svg';
 
 const { heroText, heroImage, ctaText, ctaLink } = Astro.props;
 ---
@@ -9,43 +10,69 @@ const { heroText, heroImage, ctaText, ctaLink } = Astro.props;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: start;
+    align-items: center;
     color: var(--base-light);
     text-align: left;
     position: relative;
-    height: 20rem;
     object-fit: cover;
     overflow: hidden;
     width: 100%;
+    padding: 2rem;
 
-    img {
+    color: white;
+
+    img.full-img {
       height: auto;
       top: 0;
       position: absolute;
       z-index: -1;
+      width: 100%;
     }
 
-    .content {
-      padding: 2rem;
+    h2 {
+      font-size: 3.75rem;
+      margin-bottom: 1.5rem;
     }
 
     p {
       text-wrap: balance;
     }
   }
-  h2 {
-    font-size: 2rem;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    text-decoration: none;
+    color: var(--black);
+    padding: 1rem 2rem;
+    font-weight: 700;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    background: var(--light-gray);
+  }
+
+  .button {
+    margin-top: 2rem;
+  }
+
+  .icon {
+    position: relative;
+    height: 2.375rem;
+    width: 2.375rem;
   }
 </style>
 
 <div class="background">
-  <img src={heroImage} alt="" />
+  <img src={heroImage} alt="" class="full-img" />
   <div class="content">
     <PortableText value={heroText} />
   </div>
   {
     ctaText && ctaLink && (
       <a href={ctaLink} class="button">
+        <img src={cnpicon.src} alt="" class="icon" />
         {ctaText}
       </a>
     )

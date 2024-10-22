@@ -6,8 +6,10 @@ import faqs from './faq';
 import { headline } from './headline';
 import { hero } from './hero';
 import { page } from './page';
+import { mediaCards } from './mediaCards';
 import { sideBySide } from './sideBySide';
 import { spacer } from './spacer';
+import { portraitCards } from './portraitCards';
 
 export const schema = [
   page,
@@ -18,6 +20,8 @@ export const schema = [
   faqs,
   hero,
   headline,
+  mediaCards,
+  portraitCards,
   sideBySide,
   spacer,
 ];

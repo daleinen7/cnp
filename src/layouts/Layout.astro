@@ -128,7 +128,7 @@ const { title } = Astro.props;
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
+    font-size: 1rem;
     font: inherit;
     vertical-align: baseline;
   }
@@ -171,6 +171,8 @@ const { title } = Astro.props;
 
   html {
     background: var(--white);
+    width: 100%;
+    overflow-x: hidden;
   }
   body {
     margin: 0;
@@ -178,6 +180,8 @@ const { title } = Astro.props;
     font-size: 1rem;
     color: var(--black);
     font-family: 'Lato', sans-serif;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   h1,

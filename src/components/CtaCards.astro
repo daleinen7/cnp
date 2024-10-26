@@ -11,26 +11,46 @@ interface Card {
 const { ctaCardList } = Astro.props;
 ---
 
-{
-  ctaCardList.map((card: Card) => {
-    const { headline, text, ctaText, ctaLink } = card;
-    return (
-      <div class="card">
-        {headline && <h3>{headline}</h3>}
-        {text && <PortableText portableText={text} />}
-        {ctaText && ctaLink && <a href={ctaLink}>{ctaText}</a>}
-      </div>
-    );
-  })
-}
+<div class="card-list">
+  {
+    ctaCardList.map((card: Card) => {
+      const { headline, text, ctaText, ctaLink } = card;
+      return (
+        <div class="card">
+          {headline && <h3>{headline}</h3>}
+          {text && <PortableText portableText={text} />}
+          {ctaText && ctaLink && (
+            <a class="button" href={ctaLink}>
+              {ctaText}
+            </a>
+          )}
+        </div>
+      );
+    })
+  }
+</div>
 
 <style>
+  .card-list {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
   .card {
     display: flex;
     flex-direction: column;
     gap: 2rem;
   }
   h3 {
+    font-weight: 700;
+    font-size: 1.875rem;
     margin: 0;
+  }
+
+  .button {
+    margin-top: auto;
+    color: var(--lilac);
   }
 </style>

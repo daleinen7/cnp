@@ -44,6 +44,8 @@ const { title } = Astro.props;
     --light-gray: #dcdcdc;
     --white: #fff;
   }
+
+  /* reset */
   html,
   body,
   div,
@@ -169,6 +171,7 @@ const { title } = Astro.props;
     border-spacing: 0;
   }
 
+  /* global styles */
   html {
     background: var(--white);
   }
@@ -187,5 +190,20 @@ const { title } = Astro.props;
   h5,
   h6 {
     font-family: 'Montserrat', sans-serif;
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    text-decoration: none;
+    color: var(--black);
+    padding: 1rem 2rem;
+    font-weight: 700;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    background: var(--light-gray);
   }
 </style>

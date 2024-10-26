@@ -1,0 +1,60 @@
+---
+const footerItems = [
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Contact', href: '/' },
+];
+---
+
+<style>
+    footer {
+        background: var(--black);
+        color: var(--dark-gray);
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        text-align: center;
+    }
+    ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    li:last-child span {
+        display: none;
+    }
+    a {
+        color: var(--dark-gray);
+    }
+  @media( width > 450px) {
+    .mobile{
+        display: none;
+    }
+    footer {
+        flex-direction: row;
+    }
+  }
+</style>
+
+<script>
+
+</script>
+
+<footer>
+    <div>
+        2020 © Copyright Citizens Network of Protection. All rights reserved.
+    </div>
+    <ul>
+      {
+        footerItems.map((item) => (
+          <li>
+            <a href={item.href}>{item.name}</a><span class="mobile">|</span>
+          </li>
+        ))
+      }
+    </ul>
+
+</footer>
+

@@ -2,7 +2,22 @@
 export interface HeadlineProps {
   headline: string;
 }
-const { headline } = Astro.props;
+const { headline, headingLevel } = Astro.props;
+
+const Heading = `${headingLevel}`;
 ---
 
-<h2>{headline}</h2>
+<Heading>{headline}</Heading>
+
+<style>
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin: 4rem 2rem 2rem;
+    text-align: center;
+  }
+</style>

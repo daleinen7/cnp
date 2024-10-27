@@ -33,10 +33,15 @@ const { ctaCardList } = Astro.props;
 <style>
   .card-list {
     display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+    gap: 3rem;
+    grid-template-columns: 1fr;
     padding: 2rem;
-    margin-bottom: 3rem;
+    margin: 0 auto 3rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+    }
   }
   .card {
     display: flex;

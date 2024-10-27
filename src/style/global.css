@@ -2,17 +2,22 @@
 :root {
   --black: #000;
   --dark-purple: #181942;
-  --purple: #4a2791;
-  --lilac: #8b6ad7;
+  --mid-purple: #4a2791;
+  --purple: #8b6ad7;
   --light-purple: #b7a0ec;
   --yellow: #f1ea67;
   --dark-gray: #686868;
   --light-gray: #dcdcdc;
   --white: #fff;
+  --radius: 0.5rem;
 }
 
 html {
   background: var(--white);
+}
+html, 
+body {
+  overflow-x: hidden;
 }
 body {
   margin: 0;
@@ -41,7 +46,7 @@ h6 {
   color: var(--black);
   padding: 1rem 2rem;
   font-weight: 700;
-  border-radius: 0.5rem;
+  border-radius: var(--radius);
   font-size: 1.5rem;
   background: var(--light-gray);
 }

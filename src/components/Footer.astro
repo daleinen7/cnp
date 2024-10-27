@@ -1,9 +1,10 @@
 ---
 const footerItems = [
-  { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'Contact', href: '/' },
+  { name: 'Resources', href: '/resources' },
+  { name: 'Volunteer', href: '/volunteer' },
+  { name: 'Support', href: '/support' },
+  { name: 'File A complaint', href: '/complaint' },
 ];
 ---
 
@@ -13,8 +14,9 @@ const footerItems = [
         color: var(--dark-gray);
         display: flex;
         flex-direction: column;
-        padding: 1rem;
+        padding: 1.5rem;
         text-align: center;
+        gap: 1rem;
     }
     ul {
         display: flex;
@@ -27,34 +29,67 @@ const footerItems = [
     }
     a {
         color: var(--dark-gray);
+        text-decoration: none;
     }
-  @media( width > 450px) {
-    .mobile{
+    div.terms {
+      color: #aaabac;
+    }
+    .divider {
+      padding-inline:1rem;
+    }
+    a:hover,
+    a:active,
+    a:focus {
+      color: var(--mid-purple);
+    }
+    @media( width > 990px) {
+      .mobile{
         display: none;
-    }
-    footer {
+      }
+      footer {
         flex-direction: row;
-    }
+        justify-content: space-between;
+      }
+      div.terms {
+        color: var(--dark-gray);
+        max-width: 400px;
+        text-align: left;
+      }
+      ul,
+      .social-media {
+        display: flex;
+        gap:2rem;
+      }
   }
 </style>
 
-<script>
-
-</script>
-
 <footer>
-    <div>
+    <div class="terms">
         2020 © Copyright Citizens Network of Protection. All rights reserved.
     </div>
     <ul>
       {
         footerItems.map((item) => (
           <li>
-            <a href={item.href}>{item.name}</a><span class="mobile">|</span>
+            <a href={item.href}>{item.name}</a><span class="mobile divider">|</span>
           </li>
         ))
       }
     </ul>
-
+    <div class="social-media">
+      <!-- icons needed -->
+      <a href="#">
+        <span>f</span>
+      </a>
+      <a href="#">
+        <span>x</span>
+      </a>
+      <a href="#">
+        <span>y</span>
+      </a>
+      <a href="#">
+        <span>i</span>
+      </a>
+    </div>
 </footer>
 

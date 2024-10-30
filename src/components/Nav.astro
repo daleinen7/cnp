@@ -57,7 +57,7 @@ const navItems = [
       display: block;
       padding-block: 1rem;
       text-decoration-color: var(--white-transparent);
-      transition: text-decoration-color var(--transition);
+      transition: all var(--transition);
   }
   nav ul a:hover {
       text-decoration: underline;
@@ -73,13 +73,17 @@ const navItems = [
     position: absolute;
     background: var(--white);
     padding: 1rem 1rem 2rem 1rem;
-    width: 75%;
+    width: 100%;
     right: 0;
     top: 143px;
     z-index: 2;
     gap: 1.5rem;
     text-align: center;
     border-bottom: var(--radius);
+    box-shadow: -3px 21px 20px -6px rgba(0,0,0,0.35);
+    transform-origin: 100% 0%;
+    transform: scale(0);
+    transition: transform 0.5s;
   }
   .nav {
     display: none;
@@ -89,9 +93,11 @@ const navItems = [
     background: transparent;
     font-weight: 900;
     font-size: 2rem;
+    cursor: pointer;
   }
   .open {
     display: flex !important;
+    transform: scale(100%) !important;
   }
   @media( width > 990px) {
     .desktop { 
@@ -111,6 +117,9 @@ const navItems = [
       padding: 0;
     }
     ul{
+      font-size: 1rem;
+    }
+    #contact a {
       font-size: 1rem;
     }
     ul#contact{
@@ -206,10 +215,14 @@ const navItems = [
 <header>
   <ul id="contact">
     <li class="desktop">
-      <span><img src={emailIcon.src} alt="decorative"/></span>Info@CitizensNetworkofProtection.com
+      <a href="mailto:Info@CitizensNetworkofProtection.com">
+        <span><img src={emailIcon.src} alt="decorative"/></span>Info@CitizensNetworkofProtection.com
+      </a>
     </li>
     <li class="desktop">
-      <span><img src={phoneIcone.src} alt="decorative"/></span>+1 (872) 235-2289
+      <a href="tel:+18722352289">
+        <span><img src={phoneIcone.src} alt="decorative"/></span>+1 (872) 235-2289
+      </a>
     </li>
     <li>
       <a href="#">Contact</a>

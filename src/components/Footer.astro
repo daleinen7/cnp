@@ -1,4 +1,9 @@
 ---
+import fb from '../images/fb-icon.svg';
+import xIcon from '../images/x-icon.svg';
+import insta from '../images/insta-icon.svg';
+import yt from '../images/yt-icon.svg';
+
 const footerItems = [
   { name: 'About', href: '/about' },
   { name: 'Resources', href: '/resources' },
@@ -28,8 +33,13 @@ const footerItems = [
         display: none;
     }
     a {
-        color: var(--dark-gray);
-        text-decoration: none;
+      color: var(--dark-gray);
+      height: fit-content;
+      border-radius: 8px;
+      padding: 5px;
+      text-decoration: underline;
+      text-decoration-color: var(--dark-gray-transparent);
+      transition: all var(--transition);
     }
     div.terms {
       color: #aaabac;
@@ -40,7 +50,13 @@ const footerItems = [
     a:hover,
     a:active,
     a:focus {
-      color: var(--mid-purple);
+      color: var(--yellow);
+      text-decoration-color: var(--yellow);
+    }
+    .social-media a:hover,
+    .social-media a:active,
+    .social-media a:focus {
+      background: var(--yellow);
     }
     @media( width > 990px) {
       .mobile{
@@ -58,7 +74,7 @@ const footerItems = [
       ul,
       .social-media {
         display: flex;
-        gap:2rem;
+        gap:1rem;
       }
   }
 </style>
@@ -77,18 +93,17 @@ const footerItems = [
       }
     </ul>
     <div class="social-media">
-      <!-- icons needed -->
-      <a href="#">
-        <span>f</span>
+      <a href="https://www.facebook.com/CitizensNetworkofProtection/">
+        <img src={fb.src} alt="facebook logo"/>
       </a>
-      <a href="#">
-        <span>x</span>
+      <a href="https://x.com/cnpevanston/">
+        <img src={xIcon.src} alt="X logo"/>
       </a>
-      <a href="#">
-        <span>y</span>
+      <a href="https://www.youtube.com/channel/UC6Hht8-0_iIDMUgX9vWWtoQ/">
+        <img src={yt.src} alt="YouTube logo"/>
       </a>
-      <a href="#">
-        <span>i</span>
+      <a href="https://www.instagram.com/citizensnetworkofprotection/">
+        <img src={insta.src} alt="Instagram logo"/>
       </a>
     </div>
 </footer>

@@ -1,4 +1,8 @@
 ---
+import emailIcon from '../images/email-icon.svg';
+import phoneIcone from '../images/phone-icon.svg';
+import burger from '../images/burger-icon.svg';
+
 const navItems = [
   { name: 'About', href: '/about', color:'gray' },
   { name: 'Resources', href: '/resources', color:'light-purple'  },
@@ -12,6 +16,7 @@ const navItems = [
   .desktop { 
     display: none;
   }
+  
   .logo {
     color: var(--black);
     font-size: 1.25rem;
@@ -23,19 +28,21 @@ const navItems = [
   }
   #contact {
     display: flex;
-    justify-content: flex-end;
+    justify-self: flex-end;
     background: var(--black);
     color: var(--white);
     padding: 1rem 2rem;
   }
   #contact a {
     color: var(--white);
-    text-decoration: none;
+    font-size: 1.5rem;
+    text-decoration-color: var(--white-transparent);
+    transition: text-decoration-color var(--transition);
   }
   #contact a:hover,
   #contact a:active,
   #contact a:focus {
-    text-decoration: underline;
+    text-decoration-color: var(--white);
   }
   nav {
     background-color: var(--white);
@@ -47,9 +54,15 @@ const navItems = [
   nav a {
       color: var(--black);
       text-decoration: none;
+      display: block;
+      padding-block: 1rem;
+      text-decoration-color: var(--white-transparent);
+      transition: text-decoration-color var(--transition);
   }
-  nav a:hover {
+  nav ul a:hover {
       text-decoration: underline;
+      background: var(--mid-purple);
+      color: var(--white);
   }
   ul {
     display: flex;
@@ -68,21 +81,27 @@ const navItems = [
     text-align: center;
     border-bottom: var(--radius);
   }
+  .nav {
+    display: none;
+  }
   button.nav-toggle {
     border: none;
     background: transparent;
     font-weight: 900;
     font-size: 2rem;
   }
-  .closed {
-    display: none;
+  .open {
+    display: flex !important;
   }
   @media( width > 990px) {
     .desktop { 
-      display: inline-block;
+      display: block;
     }
     .mobile {
       display:none;
+    }
+    .nav {
+      display: flex;
     }
     .logo {
       font-size: 1rem;
@@ -98,10 +117,17 @@ const navItems = [
       flex-direction: row;
       width: 100%;
       justify-content: flex-start;
+      justify-self: auto; /* to nullify the justify-self in mobile */
+      align-items: center;
     }
     #contact li {
       width: 200px;
       text-align: center;
+    }
+    #contact li span {
+      display: inline-block;
+      height: fit-content;
+      margin-right: 1rem;
     }
     #contact li:first-child {
       width: 70%;
@@ -117,29 +143,36 @@ const navItems = [
       width: auto;
     }
     nav li {
-      padding-block: 1rem;
       min-width: 135px;
       text-align: center;
     }
-    .gray{
-      background: var(--light-gray);
+    nav a {
+      padding-block: 1rem;
     }
-    .light-purple{
-      background: var(--light-purple);
+    .gray,
+    .gray:hover{
+      background: var(--light-gray) !important;
+      color: var(--black) !important;
     }
-    .purple{
-      background: var(--purple);
+    .light-purple,
+    .light-purple:hover{
+      background: var(--light-purple) !important;
+      color: var(--black) !important;
     }
-    .mid-purple{
-      background: var(--mid-purple);
+    .purple,
+    a.purple:hover{
+      background: var(--purple) !important;
+      color: var(--white) !important;
     }
-    .dark-purple{
-      background: var(--dark-purple);
+    .mid-purple,
+    .mid-purple:hover{
+      background: var(--mid-purple) !important;
+      color: var(--white) !important;
     }
-    .purple a,
-    .mid-purple a,
-    .dark-purple a{
-      color: var(--white);
+    .dark-purple,
+    .dark-purple:hover{
+      background: var(--dark-purple) !important;
+      color: var(--white) !important;
     }
   }
   @media( width > 1315px) {
@@ -151,29 +184,32 @@ const navItems = [
 
 <script>
   const burger = document.querySelector('button.nav-toggle');
-  const navList = document.querySelector('nav ul');
+  const navList = document.querySelector('.nav');
 
-  window.addEventListener("resize", () => {
+  const navToggleIfMobileSize = () => {
     if (window.innerWidth < 989){
-      navList?.classList.add('closed');
       burger?.addEventListener('click', ()=> {
-        navList?.classList.toggle('closed');
+        navList?.classList.toggle('open');
       })
     } else {
-      navList?.classList.remove('closed');
+      navList?.classList.remove('open');
     }
+  }
+
+  window.addEventListener("load", navToggleIfMobileSize);
+
+  window.addEventListener("resize", () => {
+    navToggleIfMobileSize();
   });
 </script>
 
 <header>
   <ul id="contact">
     <li class="desktop">
-      <!-- icon needed -->
-      <span>[]</span>Info@CitizensNetworkofProtection.com
+      <span><img src={emailIcon.src} alt="decorative"/></span>Info@CitizensNetworkofProtection.com
     </li>
     <li class="desktop">
-      <!-- icon needed -->
-      <span>[]</span>+1 (872) 235-2289
+      <span><img src={phoneIcone.src} alt="decorative"/></span>+1 (872) 235-2289
     </li>
     <li>
       <a href="#">Contact</a>
@@ -182,11 +218,11 @@ const navItems = [
   </ul>
   <nav id="menu">
     <a href="/" class="logo">Citizen's Network of Protection</a>
-    <ul>
+    <ul class="nav">
       {
         navItems.map((item) => (
-          <li class={item.color}>
-            <a href={item.href}>{item.name}</a>
+          <li>
+            <a class={item.color} href={item.href}>{item.name}</a>
           </li>
         ))
       }
@@ -195,8 +231,7 @@ const navItems = [
       type="button"
       class="mobile nav-toggle" 
       aria-controls="menu">
-      <!-- icon needed -->
-      =
+      <img src={burger.src} aria-hidden="true">
     </button>
   </nav>
 </header>

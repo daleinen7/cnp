@@ -128,7 +128,7 @@ const navItems = [
     ul#contact{
       flex-direction: row;
       width: 100%;
-      justify-content: flex-start;
+      justify-content: space-between;
       justify-self: auto; /* to nullify the justify-self in mobile */
       align-items: center;
     }
@@ -148,17 +148,19 @@ const navItems = [
     nav ul{
       visibility: visible;
       flex-direction: row;
+      width: 75%;
       gap: 0;
       list-style-type: none;
       position: static;
       z-index: 1;
       padding: 0;
-      width: auto;
       translate: 0;
       scale:100%;
+      box-shadow: none;
     }
     nav li {
       min-width: 135px;
+      width: 100%;
       text-align: center;
     }
     nav a {

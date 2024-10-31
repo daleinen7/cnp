@@ -17,11 +17,14 @@ const footerItems = [
     footer {
         background: var(--black);
         color: var(--dark-gray);
-        display: flex;
-        flex-direction: column;
-        padding: 1.5rem;
-        text-align: center;
-        gap: 1rem;
+      }
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      text-align: center;
+      gap: 1rem;
+
     }
     ul {
         display: flex;
@@ -62,7 +65,7 @@ const footerItems = [
       .mobile{
         display: none;
       }
-      footer {
+      .wrapper {
         flex-direction: row;
         justify-content: space-between;
       }
@@ -78,10 +81,10 @@ const footerItems = [
       }
   }
 </style>
-
 <footer>
+  <div class="wrapper">
     <div class="terms">
-        2020 © Copyright Citizens Network of Protection. All rights reserved.
+        {new Date().getFullYear()} © Copyright Citizens Network of Protection. All rights reserved.
     </div>
     <ul>
       {
@@ -106,5 +109,6 @@ const footerItems = [
         <img src={insta.src} alt="Instagram logo"/>
       </a>
     </div>
+  </div>
 </footer>
 

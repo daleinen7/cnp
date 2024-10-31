@@ -83,10 +83,8 @@ const navItems = [
     box-shadow: -3px 21px 20px -6px rgba(0,0,0,0.35);
     transform-origin: 100% 0%;
     translate: 100%;
-    transition: all var(--transition) ease-in;
-  }
-  .nav {
-    display: none;
+    scale: 0;
+    transition: all 0.5s ease-in;
   }
   button.nav-toggle {
     border: none;
@@ -99,9 +97,13 @@ const navItems = [
   button.nav-toggle:hover {
     scale: 1.1;
   }
+  .nav {
+    visibility: hidden;
+  }
   .nav.open {
-    display: flex !important;
-    translate: 0%;
+    visibility: visible;
+    scale: 100%;
+    translate: 0;
   }
   @media( width > 990px) {
     .desktop { 
@@ -109,9 +111,6 @@ const navItems = [
     }
     .mobile {
       display:none;
-    }
-    .nav {
-      display: flex;
     }
     .logo {
       font-size: 1rem;
@@ -147,6 +146,7 @@ const navItems = [
       text-align: justify;
     }
     nav ul{
+      visibility: visible;
       flex-direction: row;
       gap: 0;
       list-style-type: none;
@@ -155,6 +155,7 @@ const navItems = [
       padding: 0;
       width: auto;
       translate: 0;
+      scale:100%;
     }
     nav li {
       min-width: 135px;
@@ -203,9 +204,9 @@ const navItems = [
   burger?.addEventListener('click', ()=> {
     navList?.classList.toggle('open');
   })
-  navList?.addEventListener("mouseleave", ( ()=> {
+  navList?.addEventListener("mouseleave", ()=> {
     navList?.classList.remove('open');
-  }))
+  })
 </script>
 
 <header>

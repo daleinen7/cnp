@@ -82,8 +82,8 @@ const navItems = [
     border-bottom: var(--radius);
     box-shadow: -3px 21px 20px -6px rgba(0,0,0,0.35);
     transform-origin: 100% 0%;
-    transform: scale(0);
-    transition: transform 0.5s;
+    translate: 100%;
+    transition: all var(--transition) ease-in;
   }
   .nav {
     display: none;
@@ -91,13 +91,17 @@ const navItems = [
   button.nav-toggle {
     border: none;
     background: transparent;
-    font-weight: 900;
     font-size: 2rem;
     cursor: pointer;
+    scale: 1;
+    transition: all var(--transition) ease-in;
   }
-  .open {
+  button.nav-toggle:hover {
+    scale: 1.1;
+  }
+  .nav.open {
     display: flex !important;
-    transform: scale(100%) !important;
+    translate: 0%;
   }
   @media( width > 990px) {
     .desktop { 
@@ -150,6 +154,7 @@ const navItems = [
       z-index: 1;
       padding: 0;
       width: auto;
+      translate: 0;
     }
     nav li {
       min-width: 135px;
@@ -195,21 +200,12 @@ const navItems = [
   const burger = document.querySelector('button.nav-toggle');
   const navList = document.querySelector('.nav');
 
-  const navToggleIfMobileSize = () => {
-    if (window.innerWidth < 989){
-      burger?.addEventListener('click', ()=> {
-        navList?.classList.toggle('open');
-      })
-    } else {
-      navList?.classList.remove('open');
-    }
-  }
-
-  window.addEventListener("load", navToggleIfMobileSize);
-
-  window.addEventListener("resize", () => {
-    navToggleIfMobileSize();
-  });
+  burger?.addEventListener('click', ()=> {
+    navList?.classList.toggle('open');
+  })
+  navList?.addEventListener("mouseleave", ( ()=> {
+    navList?.classList.remove('open');
+  }))
 </script>
 
 <header>
@@ -243,7 +239,8 @@ const navItems = [
     <button 
       type="button"
       class="mobile nav-toggle" 
-      aria-controls="menu">
+      aria-controls="menu"
+      aria-label="Click to open Navigation">
       <img src={burger.src} aria-hidden="true">
     </button>
   </nav>

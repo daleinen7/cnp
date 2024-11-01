@@ -1,7 +1,6 @@
 ---
 import emailIcon from '../images/email-icon.svg';
 import phoneIcone from '../images/phone-icon.svg';
-import burger from '../images/burger-icon.svg';
 
 const navItems = [
   { name: 'About', href: '/about', color:'gray' },
@@ -11,6 +10,58 @@ const navItems = [
   { name: 'File A complaint', href: '/complaint', color: 'dark-purple' },
 ];
 ---
+
+<script>
+  const burger = document.querySelector('button.nav-toggle');
+  const navList = document.querySelector('.nav');
+
+  burger?.addEventListener('click', ()=> {
+    navList?.classList.toggle('open');
+    burger?.classList.toggle('open');
+  })
+  navList?.addEventListener("mouseleave", ()=> {
+    navList?.classList.remove('open');
+    burger?.classList.remove('open');
+  })
+</script>
+
+<header>
+  <ul id="contact">
+    <li class="desktop">
+      <a href="mailto:Info@CitizensNetworkofProtection.com">
+        <span><img src={emailIcon.src} alt="decorative"/></span>Info@CitizensNetworkofProtection.com
+      </a>
+    </li>
+    <li class="desktop">
+      <a href="tel:+18722352289">
+        <span><img src={phoneIcone.src} alt="decorative"/></span>+1 (872) 235-2289
+      </a>
+    </li>
+    <li>
+      <a href="#">Contact</a>
+    </li>
+
+  </ul>
+  <nav id="menu">
+    <a href="/" class="logo">Citizen's Network of Protection</a>
+    <ul class="nav">
+      {
+        navItems.map((item) => (
+          <li>
+            <a class={item.color} href={item.href}>{item.name}</a>
+          </li>
+        ))
+      }
+    </ul>
+    <button 
+      type="button"
+      class="mobile nav-toggle" 
+      aria-controls="menu"
+      aria-label="Click to open Navigation">
+      <!-- <img src={burger.src} aria-hidden="true"> -->
+    </button>
+  </nav>
+</header>
 
 <style>
   .desktop { 
@@ -75,7 +126,7 @@ const navItems = [
     padding: 1rem 1rem 2rem 1rem;
     width: 100%;
     right: 0;
-    top: 143px;
+    top: 8.9rem;
     z-index: 2;
     gap: 1.5rem;
     text-align: center;
@@ -92,10 +143,17 @@ const navItems = [
     font-size: 2rem;
     cursor: pointer;
     scale: 1;
-    transition: all var(--transition) ease-in;
+    transition: scale var(--transition) ease-in;
+    background: url('../images/burger-icon.svg') no-repeat center;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
   }
   button.nav-toggle:hover {
     scale: 1.1;
+  }
+  button.nav-toggle.open {
+    background: url('../images/close-icon.svg') no-repeat center;
   }
   .nav {
     visibility: hidden;
@@ -133,7 +191,7 @@ const navItems = [
       align-items: center;
     }
     #contact li {
-      width: 200px;
+      width: 16.7rem;
       text-align: center;
     }
     #contact li span {
@@ -148,7 +206,7 @@ const navItems = [
     nav ul{
       visibility: visible;
       flex-direction: row;
-      width: 75%;
+      width: 69%;
       gap: 0;
       list-style-type: none;
       position: static;
@@ -157,9 +215,10 @@ const navItems = [
       translate: 0;
       scale:100%;
       box-shadow: none;
+      transition: none;
     }
     nav li {
-      min-width: 135px;
+      min-width: 8.4rem;
       width: 100%;
       text-align: center;
     }
@@ -193,59 +252,12 @@ const navItems = [
     }
   }
   @media( width > 1315px) {
+    nav ul{
+      width: 75%;
+    }
     nav li {
-      min-width: 140px;
+      min-width: 11.6rem;
     }
   }
 </style>
-
-<script>
-  const burger = document.querySelector('button.nav-toggle');
-  const navList = document.querySelector('.nav');
-
-  burger?.addEventListener('click', ()=> {
-    navList?.classList.toggle('open');
-  })
-  navList?.addEventListener("mouseleave", ()=> {
-    navList?.classList.remove('open');
-  })
-</script>
-
-<header>
-  <ul id="contact">
-    <li class="desktop">
-      <a href="mailto:Info@CitizensNetworkofProtection.com">
-        <span><img src={emailIcon.src} alt="decorative"/></span>Info@CitizensNetworkofProtection.com
-      </a>
-    </li>
-    <li class="desktop">
-      <a href="tel:+18722352289">
-        <span><img src={phoneIcone.src} alt="decorative"/></span>+1 (872) 235-2289
-      </a>
-    </li>
-    <li>
-      <a href="#">Contact</a>
-    </li>
-
-  </ul>
-  <nav id="menu">
-    <a href="/" class="logo">Citizen's Network of Protection</a>
-    <ul class="nav">
-      {
-        navItems.map((item) => (
-          <li>
-            <a class={item.color} href={item.href}>{item.name}</a>
-          </li>
-        ))
-      }
-    </ul>
-    <button 
-      type="button"
-      class="mobile nav-toggle" 
-      aria-controls="menu"
-      aria-label="Click to open Navigation">
-      <img src={burger.src} aria-hidden="true">
-    </button>
-  </nav>
-</header>
 

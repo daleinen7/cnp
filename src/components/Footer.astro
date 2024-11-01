@@ -13,74 +13,6 @@ const footerItems = [
 ];
 ---
 
-<style>
-    footer {
-        background: var(--black);
-        color: var(--dark-gray);
-      }
-    .wrapper {
-      display: flex;
-      flex-direction: column;
-      padding: 1.5rem;
-      text-align: center;
-      gap: 1rem;
-
-    }
-    ul {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    li:last-child span {
-        display: none;
-    }
-    a {
-      color: var(--dark-gray);
-      height: fit-content;
-      border-radius: 8px;
-      padding: 5px;
-      text-decoration: underline;
-      text-decoration-color: var(--dark-gray-transparent);
-      transition: all var(--transition);
-    }
-    div.terms {
-      color: #aaabac;
-    }
-    .divider {
-      padding-inline:1rem;
-    }
-    a:hover,
-    a:active,
-    a:focus {
-      color: var(--yellow);
-      text-decoration-color: var(--yellow);
-    }
-    .social-media a:hover,
-    .social-media a:active,
-    .social-media a:focus {
-      background: var(--yellow);
-    }
-    @media( width > 990px) {
-      .mobile{
-        display: none;
-      }
-      .wrapper {
-        flex-direction: row;
-        justify-content: space-between;
-      }
-      div.terms {
-        color: var(--dark-gray);
-        max-width: 400px;
-        text-align: left;
-      }
-      ul,
-      .social-media {
-        display: flex;
-        gap:1rem;
-      }
-  }
-</style>
 <footer>
   <div class="wrapper">
     <div class="terms">
@@ -111,4 +43,72 @@ const footerItems = [
     </div>
   </div>
 </footer>
+
+<style>
+  footer {
+      background: var(--black);
+      color: var(--dark-gray);
+    }
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+
+  }
+  ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+  }
+  li:last-child span {
+      display: none;
+  }
+  a {
+    color: var(--dark-gray);
+    height: fit-content;
+    border-radius: 0.5rem;
+    padding: .3rem;
+    text-decoration: underline;
+    text-decoration-color: var(--dark-gray-transparent);
+    transition: all var(--transition);
+  }
+  div.terms {
+    color: #aaabac;
+  }
+  .divider {
+    padding-inline:1rem;
+  }
+  a:hover,
+  a:active,
+  a:focus {
+    color: var(--yellow);
+    text-decoration-color: var(--yellow);
+  }
+  .social-media a:hover,
+  .social-media a:active,
+  .social-media a:focus {
+    background: var(--yellow);
+  }
+  @media( width > 990px) {
+    .mobile{
+      display: none;
+    }
+    .wrapper {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    div.terms {
+      color: var(--dark-gray);
+      max-width: 25rem;
+      text-align: left;
+    }
+    ul,
+    .social-media {
+      display: flex;
+      gap:1rem;
+    }
+}
+</style>
 

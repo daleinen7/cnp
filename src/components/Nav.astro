@@ -1,48 +1,263 @@
 ---
+import emailIcon from '../images/email-icon.svg';
+import phoneIcone from '../images/phone-icon.svg';
+
 const navItems = [
-  { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'Contact', href: '/' },
+  { name: 'About', href: '/about', color:'gray' },
+  { name: 'Resources', href: '/resources', color:'light-purple'  },
+  { name: 'Volunteer', href: '/volunteer', color:'purple'},
+  { name: 'Support', href: '/support', color: 'mid-purple'},
+  { name: 'File A complaint', href: '/complaint', color: 'dark-purple' },
 ];
 ---
 
-<style>
-  .logo {
-    color: white;
-    font-size: 1.5rem;
-    text-decoration: none;
-  }
+<script>
+  const burger = document.querySelector('button.nav-toggle');
+  const navList = document.querySelector('.nav');
 
+  burger?.addEventListener('click', ()=> {
+    navList?.classList.toggle('open');
+    burger?.classList.toggle('open');
+  })
+  navList?.addEventListener("mouseleave", ()=> {
+    navList?.classList.remove('open');
+    burger?.classList.remove('open');
+  })
+</script>
+
+<header>
+  <ul id="contact">
+    <li class="desktop">
+      <a href="mailto:Info@CitizensNetworkofProtection.com">
+        <span><img src={emailIcon.src} alt="decorative"/></span>Info@CitizensNetworkofProtection.com
+      </a>
+    </li>
+    <li class="desktop">
+      <a href="tel:+18722352289">
+        <span><img src={phoneIcone.src} alt="decorative"/></span>+1 (872) 235-2289
+      </a>
+    </li>
+    <li>
+      <a href="#">Contact</a>
+    </li>
+
+  </ul>
+  <nav id="menu">
+    <a href="/" class="logo">Citizen's Network of Protection</a>
+    <ul class="nav">
+      {
+        navItems.map((item) => (
+          <li>
+            <a class={item.color} href={item.href}>{item.name}</a>
+          </li>
+        ))
+      }
+    </ul>
+    <button 
+      type="button"
+      class="mobile nav-toggle" 
+      aria-controls="menu"
+      aria-label="Click to open Navigation">
+      <!-- <img src={burger.src} aria-hidden="true"> -->
+    </button>
+  </nav>
+</header>
+
+<style>
+  .desktop { 
+    display: none;
+  }
+  
+  .logo {
+    color: var(--black);
+    font-size: 1.25rem;
+    text-decoration: none;
+    font-weight: 900;
+  }
+  header {
+    background: var(--black);
+  }
+  #contact {
+    display: flex;
+    justify-self: flex-end;
+    background: var(--black);
+    color: var(--white);
+    padding: 1rem 2rem;
+  }
+  #contact a {
+    color: var(--white);
+    font-size: 1.5rem;
+    text-decoration-color: var(--white-transparent);
+    transition: text-decoration-color var(--transition);
+  }
+  #contact a:hover,
+  #contact a:active,
+  #contact a:focus {
+    text-decoration-color: var(--white);
+  }
   nav {
-    background-color: var(--dark-purple);
+    background-color: var(--white);
     padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    a {
-      color: white;
-      text-decoration: none;
-    }
   }
-
+  nav a {
+      color: var(--black);
+      text-decoration: none;
+      display: block;
+      padding-block: 1rem;
+      text-decoration-color: var(--white-transparent);
+      transition: all var(--transition);
+  }
+  nav ul a:hover {
+      text-decoration: underline;
+      background: var(--mid-purple);
+      color: var(--white);
+  }
   ul {
     display: flex;
-    gap: 1rem;
-    list-style-type: none;
+    flex-direction: column;
+    font-size: 2rem;
+  }
+  nav ul {
+    position: absolute;
+    background: var(--white);
+    padding: 1rem 1rem 2rem 1rem;
+    width: 100%;
+    right: 0;
+    top: 8.9rem;
+    z-index: 2;
+    gap: 1.5rem;
+    text-align: center;
+    border-bottom: var(--radius);
+    box-shadow: -3px 21px 20px -6px rgba(0,0,0,0.35);
+    transform-origin: 100% 0%;
+    translate: 100%;
+    scale: 0;
+    transition: all 0.5s ease-in;
+  }
+  button.nav-toggle {
+    border: none;
+    background: transparent;
+    font-size: 2rem;
+    cursor: pointer;
+    scale: 1;
+    transition: scale var(--transition) ease-in;
+    background: url('../images/burger-icon.svg') no-repeat center;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+  }
+  button.nav-toggle:hover {
+    scale: 1.1;
+  }
+  button.nav-toggle.open {
+    background: url('../images/close-icon.svg') no-repeat center;
+  }
+  .nav {
+    visibility: hidden;
+  }
+  .nav.open {
+    visibility: visible;
+    scale: 100%;
+    translate: 0;
+  }
+  @media( width > 990px) {
+    .desktop { 
+      display: block;
+    }
+    .mobile {
+      display:none;
+    }
+    .logo {
+      font-size: 1rem;
+      padding: 1rem 2rem;
+    }
+    nav {
+      padding: 0;
+    }
+    ul{
+      font-size: 1rem;
+    }
+    #contact a {
+      font-size: 1rem;
+    }
+    ul#contact{
+      flex-direction: row;
+      width: 100%;
+      justify-content: space-between;
+      justify-self: auto; /* to nullify the justify-self in mobile */
+      align-items: center;
+    }
+    #contact li {
+      width: 16.7rem;
+      text-align: center;
+    }
+    #contact li span {
+      display: inline-block;
+      height: fit-content;
+      margin-right: 1rem;
+    }
+    #contact li:first-child {
+      width: 70%;
+      text-align: justify;
+    }
+    nav ul{
+      visibility: visible;
+      flex-direction: row;
+      width: 69%;
+      gap: 0;
+      list-style-type: none;
+      position: static;
+      z-index: 1;
+      padding: 0;
+      translate: 0;
+      scale:100%;
+      box-shadow: none;
+      transition: none;
+    }
+    nav li {
+      min-width: 8.4rem;
+      width: 100%;
+      text-align: center;
+    }
+    nav a {
+      padding-block: 1rem;
+    }
+    .gray,
+    .gray:hover{
+      background: var(--light-gray) !important;
+      color: var(--black) !important;
+    }
+    .light-purple,
+    .light-purple:hover{
+      background: var(--light-purple) !important;
+      color: var(--black) !important;
+    }
+    .purple,
+    a.purple:hover{
+      background: var(--purple) !important;
+      color: var(--white) !important;
+    }
+    .mid-purple,
+    .mid-purple:hover{
+      background: var(--mid-purple) !important;
+      color: var(--white) !important;
+    }
+    .dark-purple,
+    .dark-purple:hover{
+      background: var(--dark-purple) !important;
+      color: var(--white) !important;
+    }
+  }
+  @media( width > 1315px) {
+    nav ul{
+      width: 75%;
+    }
+    nav li {
+      min-width: 11.6rem;
+    }
   }
 </style>
 
-<nav>
-  <a href="/" class="logo">Citizen's Network of Protection</a>
-  <ul>
-    {
-      navItems.map((item) => (
-        <li>
-          <a href={item.href}>{item.name}</a>
-        </li>
-      ))
-    }
-  </ul>
-</nav>

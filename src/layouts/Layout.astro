@@ -3,6 +3,10 @@ import Nav from '../components/Nav.astro';
 interface Props {
   title: string;
 }
+import Footer from '../components/Footer.astro';
+interface Props {
+  title: string;
+}
 
 import '@fontsource/lato/100.css';
 import '@fontsource/lato/300.css';
@@ -32,5 +36,6 @@ const { title } = Astro.props;
   <body>
     <Nav />
     <slot />
+    <Footer/>
   </body>
 </html>

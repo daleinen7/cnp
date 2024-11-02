@@ -1,0 +1,114 @@
+---
+import fb from '../images/fb-icon.svg';
+import xIcon from '../images/x-icon.svg';
+import insta from '../images/insta-icon.svg';
+import yt from '../images/yt-icon.svg';
+
+const footerItems = [
+  { name: 'About', href: '/about' },
+  { name: 'Resources', href: '/resources' },
+  { name: 'Volunteer', href: '/volunteer' },
+  { name: 'Support', href: '/support' },
+  { name: 'File A complaint', href: '/complaint' },
+];
+---
+
+<footer>
+  <div class="wrapper">
+    <div class="terms">
+        {new Date().getFullYear()} © Copyright Citizens Network of Protection. All rights reserved.
+    </div>
+    <ul>
+      {
+        footerItems.map((item) => (
+          <li>
+            <a href={item.href}>{item.name}</a><span class="mobile divider">|</span>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="social-media">
+      <a href="https://www.facebook.com/CitizensNetworkofProtection/">
+        <img src={fb.src} alt="facebook logo"/>
+      </a>
+      <a href="https://x.com/cnpevanston/">
+        <img src={xIcon.src} alt="X logo"/>
+      </a>
+      <a href="https://www.youtube.com/channel/UC6Hht8-0_iIDMUgX9vWWtoQ/">
+        <img src={yt.src} alt="YouTube logo"/>
+      </a>
+      <a href="https://www.instagram.com/citizensnetworkofprotection/">
+        <img src={insta.src} alt="Instagram logo"/>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+      background: var(--black);
+      color: var(--dark-gray);
+    }
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+
+  }
+  ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+  }
+  li:last-child span {
+      display: none;
+  }
+  a {
+    color: var(--dark-gray);
+    height: fit-content;
+    border-radius: 0.5rem;
+    padding: .3rem;
+    text-decoration: underline;
+    text-decoration-color: var(--dark-gray-transparent);
+    transition: all var(--transition);
+  }
+  div.terms {
+    color: #aaabac;
+  }
+  .divider {
+    padding-inline:1rem;
+  }
+  a:hover,
+  a:active,
+  a:focus {
+    color: var(--yellow);
+    text-decoration-color: var(--yellow);
+  }
+  .social-media a:hover,
+  .social-media a:active,
+  .social-media a:focus {
+    background: var(--yellow);
+  }
+  @media( width > 990px) {
+    .mobile{
+      display: none;
+    }
+    .wrapper {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    div.terms {
+      color: var(--dark-gray);
+      max-width: 25rem;
+      text-align: left;
+    }
+    ul,
+    .social-media {
+      display: flex;
+      gap:1rem;
+    }
+}
+</style>
+

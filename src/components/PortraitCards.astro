@@ -11,28 +11,54 @@ interface Card {
 const { portraitCardList } = Astro.props;
 ---
 
-{
-  portraitCardList.map((card: Card) => {
-    const { image, headline, subheadline, portraitLink } = card;
-    return (
-      <div class="card">
-        {image && <img src={image} />}
-        {headline && <h3>{headline}</h3>}
-        {subheadline && <PortableText portableText={subheadline} />}
-        {portraitLink && <a href={portraitLink}>Learn More</a>}
-      </div>
-    );
-  })
-}
+<ul class="cards wrapper">
+  {
+    portraitCardList.map((card: Card) => {
+      const { image, headline, subheadline, portraitLink } = card;
+      return (
+        <div class="card">
+          {image && <img src={image} />}
+          {headline && <h3>{headline}</h3>}
+          {subheadline && <PortableText portableText={subheadline} />}
+          {portraitLink && <a href={portraitLink}>Learn More</a>}
+        </div>
+      );
+    })
+  }
+</ul>
 
 <style>
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    margin: 0 auto;
+  }
   .card {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
     max-width: 300px;
   }
   h3 {
+    font-size: 1.875rem;
     margin: 0;
+    padding: 0.25rem 0 0.5rem 0;
+  }
+  p {
+    font-size: 1.125rem;
+    margin: 0;
+    padding: 0;
+  }
+  a {
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--mid-purple);
+    color: white;
+    text-decoration: none;
+    border-radius: 0.25rem;
+    text-align: center;
+    &:hover {
+      background-color: var(--dark-purple);
+    }
   }
 </style>

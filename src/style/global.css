@@ -19,7 +19,7 @@
 html {
   background: var(--white);
 }
-html, 
+html,
 body {
   overflow-x: hidden;
 }
@@ -56,6 +56,6 @@ h6 {
 }
 .wrapper {
   max-width: 80rem;
-  margin: auto;
-  padding: 1.5rem;
+  margin: 0 auto;
+  padding: 2rem;
 }

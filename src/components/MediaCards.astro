@@ -13,21 +13,21 @@ interface Card {
 const { mediaCardList } = Astro.props;
 ---
 
-<div class="cards wrapper">
+<ul class="cards wrapper">
   {
     mediaCardList.map((card: Card) => {
       const { headline, media, mediaLink } = card;
 
       return (
         mediaLink && (
-          <div class="card">
+          <li class="card">
             <YouTube id={mediaLink} poster={media} title={headline} />
-          </div>
+          </li>
         )
       );
     })
   }
-</div>
+</ul>
 
 <style>
   .cards {

@@ -13,7 +13,7 @@ interface Card {
 const { mediaCardList } = Astro.props;
 ---
 
-<div class="cards width-wrapper">
+<div class="cards wrapper">
   {
     mediaCardList.map((card: Card) => {
       const { headline, media, mediaLink } = card;

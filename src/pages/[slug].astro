@@ -49,6 +49,13 @@ const { data: page } = await loadQuery<SanityDocument>({
           "image": image.asset->url
         }
       },
+      _type == 'mediaCards' => {
+        _type,
+        mediaCardList[]{
+          ...,
+          "media": media.asset->url
+        }
+      },
       _type == 'sideBySide' => {
         _type,
         headline,

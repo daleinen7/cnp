@@ -1,9 +1,10 @@
 ---
 import PortableText from './PortableText.astro';
 
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
 interface Card {
   headline?: string;
-  subheadline?: string;
   text?: string;
   media?: string;
   mediaLink?: string;
@@ -12,27 +13,27 @@ interface Card {
 const { mediaCardList } = Astro.props;
 ---
 
-{
-  mediaCardList.map((card: Card) => {
-    const { headline, subheadline, text, media, mediaLink } = card;
-    return (
-      <div class="card">
-        {headline && <h3>{headline}</h3>}
-        {subheadline && <p>{subheadline}</p>}
-        {text && <PortableText portableText={text} />}
-        {media && mediaLink && <a href={mediaLink}>{media}</a>}
-      </div>
-    );
-  })
-}
+<div class="cards wrapper">
+  {
+    mediaCardList.map((card: Card) => {
+      const { headline, media, mediaLink } = card;
+
+      return (
+        mediaLink && (
+          <div class="card">
+            <YouTube id={mediaLink} poster={media} title={headline} />
+          </div>
+        )
+      );
+    })
+  }
+</div>
 
 <style>
-  .card {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-  h3 {
-    margin: 0;
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 1rem;
+    margin: 0 auto;
   }
 </style>

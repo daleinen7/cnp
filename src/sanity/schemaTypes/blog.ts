@@ -18,6 +18,16 @@ export const blog = defineType({
       },
     }),
     defineField({
+      name: 'featuredImage',
+      type: 'image',
+      title: 'Featured Image',
+    }),
+    defineField({
+      name: 'excerpt',
+      type: 'text',
+      title: 'Excerpt',
+    }),
+    defineField({
       name: 'components',
       type: 'array',
       title: 'Block Content',

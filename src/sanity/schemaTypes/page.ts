@@ -23,6 +23,7 @@ export const page = defineType({
       title: 'Block Content',
       of: [
         { type: 'basicContent' },
+        { type: 'blogList' },
         { type: 'ctaCards' },
         { type: 'faqs' },
         { type: 'headline' },

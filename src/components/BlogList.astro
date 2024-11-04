@@ -1,29 +1,31 @@
 ---
+import { headline } from '../sanity/schemaTypes/headline';
 import PortableText from './PortableText.astro';
 
 interface Card {
-  headline?: string;
-  subheadline?: string;
-  portraitLink?: string;
-  image?: string;
+  title?: string;
+  slug?: string;
+  featuredImage?: string;
+  excerpt?: string;
 }
 
-const { portraitCardList } = Astro.props;
+const { blogList } = Astro.props;
 ---
 
 <ul class="cards wrapper">
   {
-    portraitCardList.map((card: Card) => {
-      const { image, headline, subheadline, portraitLink } = card;
-      return (
-        <div class="card">
-          {image && <img src={image} />}
-          {headline && <h3>{headline}</h3>}
-          {subheadline && <PortableText portableText={subheadline} />}
-          {portraitLink && <a href={portraitLink}>Learn More</a>}
-        </div>
-      );
-    })
+    blogList &&
+      blogList.map((card: Card) => {
+        const { featuredImage, excerpt, title, slug } = card;
+        return (
+          <a href={`/${slug}`} class="card">
+            {featuredImage && <img src={featuredImage} />}
+            {title && <h3>{title}</h3>}
+            {excerpt && <p>{excerpt}</p>}
+            {slug && <a href={slug}>Learn More</a>}
+          </a>
+        );
+      })
   }
 </ul>
 

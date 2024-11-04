@@ -10,6 +10,7 @@ import FAQ from '../components/FAQ.astro';
 import CtaCards from '../components/CtaCards.astro';
 import MediaCards from '../components/MediaCards.astro';
 import PortraitCards from '../components/PortraitCards.astro';
+import BlogList from '../components/BlogList.astro';
 
 export async function getStaticPaths() {
   const { data: page } = await loadQuery<SanityDocument[]>({
@@ -33,6 +34,13 @@ const { data: page } = await loadQuery<SanityDocument>({
     title,
     "components": components[]{
       ...,
+      _type == 'blogList' => {
+        _type,
+        blogList[]->{
+          ...,
+          "featuredImage": featuredImage.asset->url
+        },
+      },
       _type == 'headline' => {
         _type,
         headline
@@ -76,6 +84,8 @@ const components = page.components || [];
       switch (component._type) {
         case 'basicContent':
           return <BasicContent content={component.content} />;
+        case 'blogList':
+          return <BlogList blogList={component.blogList} />;
         case 'ctaCards':
           return <CtaCards ctaCardList={component.ctaCardList} />;
         case 'faqs':

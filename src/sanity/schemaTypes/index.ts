@@ -10,12 +10,14 @@ import { mediaCards } from './mediaCards';
 import { sideBySide } from './sideBySide';
 import { spacer } from './spacer';
 import { portraitCards } from './portraitCards';
+import { blogList } from './blogList';
 
 export const schema = [
   page,
   blog,
   basicContent,
   blockContent,
+  blogList,
   ctaCards,
   faqs,
   hero,

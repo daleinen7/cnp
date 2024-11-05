@@ -27,6 +27,7 @@ const { headline, text, image } = Astro.props;
     margin-block: 0 1rem;
     font-size: 2.5rem;
     font-weight:600;
+    order:1;
   }
   .info {
     display: flex;
@@ -34,6 +35,7 @@ const { headline, text, image } = Astro.props;
     justify-content: center;
     gap: 1rem;
     max-width: 90%;
+    order:3;
   }
   img {
     width: 100%;
@@ -41,6 +43,7 @@ const { headline, text, image } = Astro.props;
   }
   figure {
     width: 90%;
+    order:2;
   }
   figcaption {
     padding-block: 1rem;
@@ -64,9 +67,11 @@ const { headline, text, image } = Astro.props;
     }
     .info {
       max-width: 47%;
+      order:2;
     }
     figure {
       width: 50%;
+      order: 3;
     }
   }
 </style>

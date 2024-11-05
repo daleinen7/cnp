@@ -58,7 +58,6 @@ const navItems = [
       class="mobile nav-toggle" 
       aria-controls="menu"
       aria-label="Click to open Navigation">
-      <!-- <img src={burger.src} aria-hidden="true"> -->
     </button>
   </nav>
 </header>
@@ -135,7 +134,7 @@ const navItems = [
     transform-origin: 100% 0%;
     translate: 100%;
     scale: 0;
-    transition: all 0.5s ease-in;
+    transition: scale, translate 0.5s ease-in;
   }
   button.nav-toggle {
     border: none;

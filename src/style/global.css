@@ -59,3 +59,39 @@ h6 {
   margin: 0 auto;
   padding: 2rem;
 }
+
+h1 {
+  font-size: 4.3rem;
+  font-weight: 700;
+  text-align: center;
+}
+/* default text styles */
+p {
+  text-align: left;
+  font-size: 1.3rem;
+  line-height: 125%;
+}
+
+/* default link styles */
+a {
+  color: var(--black);
+  text-decoration-color: var(--black-transparent);
+  transition: text-decoration-color, color var(--transition);
+}
+a:hover {
+  color: var(--yellow);
+  text-decoration-color: var(--yellow);
+}
+
+/* Side by side PortableText sytles */
+.info p {
+  color: var(--black);
+  max-width: 100%;
+  font-size: 1.25rem;
+}
+.info a {
+  color: var(--purple);
+}
+.info a:hover {
+  color: var(--yellow);
+}

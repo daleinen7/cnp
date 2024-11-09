@@ -11,10 +11,14 @@ import { sideBySide } from './sideBySide';
 import { spacer } from './spacer';
 import { portraitCards } from './portraitCards';
 import { blogList } from './blogList';
+import nav from './nav';
+import navItem from './navItem';
 
 export const schema = [
   page,
   blog,
+  nav,
+  navItem,
   basicContent,
   blockContent,
   blogList,

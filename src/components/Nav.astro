@@ -53,7 +53,7 @@ const { data: nav } = await loadQuery<SanityDocument[]>({
     <a href="/" class="logo">Citizen's Network of Protection</a>
     <ul class="nav">
       {
-        nav[0].navItems.map((item) => (
+        nav.navItems.map((item) => (
           <li>
             <a class={item.color} href={item.href}>
               {item.name}

@@ -1,10 +1,10 @@
 ---
-import type { SanityDocument } from '@sanity/client';
 import { loadQuery } from '../sanity/lib/loadQuery';
 import emailIcon from '../images/email-icon.svg';
 import phoneIcone from '../images/phone-icon.svg';
+import type { NavData, NavItem } from '../lib/types';
 
-const { data: nav } = await loadQuery<SanityDocument[]>({
+const { data: nav } = await loadQuery<NavData>({
   query: `
   *[_type == "nav" && title=="Main"][0]{
     title,
@@ -53,7 +53,7 @@ const { data: nav } = await loadQuery<SanityDocument[]>({
     <a href="/" class="logo">Citizen's Network of Protection</a>
     <ul class="nav">
       {
-        nav.navItems.map((item) => (
+        nav.navItems.map((item: NavItem) => (
           <li>
             <a class={item.color} href={item.href}>
               {item.name}

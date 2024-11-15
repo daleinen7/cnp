@@ -38,7 +38,7 @@ const sideBySideClass = imageLeft ? 'image-left' : 'image-right';
     margin-block: 0 1rem;
     font-size: 2.5rem;
     font-weight: 600;
-    order: 1;
+    order: 1; /* Heading always on top */
   }
 
   .info {
@@ -46,7 +46,7 @@ const sideBySideClass = imageLeft ? 'image-left' : 'image-right';
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
-    max-width: 90%;
+    max-width: 100%;
   }
 
   img {
@@ -55,31 +55,22 @@ const sideBySideClass = imageLeft ? 'image-left' : 'image-right';
   }
 
   figure {
-    width: 90%;
+    width: 100%;
   }
 
   figcaption {
     padding-block: 1rem;
   }
 
-  /* Mobile styles */
-  @media (max-width: 575px) {
-    .info {
-      order: 3;
-    }
-    figure {
-      order: 2;
-    }
+  /* Mobile-first layout: Heading > Image > Text */
+  .info {
+    order: 3;
+  }
+  figure {
+    order: 2;
   }
 
-  /* Desktop styles */
-  @media (min-width: 576px) {
-    figure {
-      max-width: 36rem;
-      height: auto;
-    }
-  }
-
+  /* Desktop-specific layout */
   @media (min-width: 990px) {
     .side-by-side {
       flex-direction: row;
@@ -91,6 +82,7 @@ const sideBySideClass = imageLeft ? 'image-left' : 'image-right';
     h3 {
       width: 100%;
       text-align: center;
+      order: 1; /* Heading stays on top */
     }
 
     .image-left .info {

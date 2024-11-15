@@ -1,18 +1,28 @@
 ---
 import PortableText from './PortableText.astro';
 
-const { headline, text, image } = Astro.props;
+const { headline, text, imageLeft, figureCaption, image } =
+  Astro.props;
+const sideBySideClass = imageLeft ? 'image-left' : 'image-right';
 ---
 
-<div class="side-by-side wrapper">
-  <h3>{headline}</h3>
-  <div class="info">
-    <PortableText portableText={text}/>
-  </div>
-  <figure>
-    <img src={image} alt="Placeholder image" />
-    <figcaption>shoule we have a caption?</figcaption>
-  </figure>
+<div class={`side-by-side wrapper ${sideBySideClass}`}>
+  {headline && <h3>{headline}</h3>}
+  {
+    image && (
+      <figure>
+        <img src={image} alt="Placeholder image" />
+        {figureCaption && <figcaption>{figureCaption}</figcaption>}
+      </figure>
+    )
+  }
+  {
+    text && (
+      <div class="info">
+        <PortableText portableText={text} />
+      </div>
+    )
+  }
 </div>
 
 <style>
@@ -23,55 +33,88 @@ const { headline, text, image } = Astro.props;
     align-items: center;
     gap: 1rem;
   }
+
   h3 {
     margin-block: 0 1rem;
     font-size: 2.5rem;
-    font-weight:600;
-    order:1;
+    font-weight: 600;
+    order: 1;
   }
+
   .info {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
     max-width: 90%;
-    order:3;
   }
+
   img {
     width: 100%;
     border-radius: var(--radius);
   }
+
   figure {
     width: 90%;
-    order:2;
   }
+
   figcaption {
     padding-block: 1rem;
   }
-  @media (width > 575px) {
+
+  /* Mobile styles */
+  @media (max-width: 575px) {
+    .info {
+      order: 3;
+    }
+    figure {
+      order: 2;
+    }
+  }
+
+  /* Desktop styles */
+  @media (min-width: 576px) {
     figure {
       max-width: 36rem;
       height: auto;
     }
   }
-  @media (width > 990px) {
+
+  @media (min-width: 990px) {
     .side-by-side {
       flex-direction: row;
       flex-wrap: wrap;
       align-items: flex-start;
-      gap:1.5rem;
+      gap: 1.5rem;
     }
+
     h3 {
       width: 100%;
       text-align: center;
     }
+
+    .image-left .info {
+      order: 2;
+    }
+
+    .image-left figure {
+      order: 3;
+    }
+
+    .image-right .info {
+      order: 3;
+    }
+
+    .image-right figure {
+      order: 2;
+    }
+
     .info {
       max-width: 47%;
-      order:2;
     }
+
     figure {
       width: 50%;
-      order: 3;
     }
   }
 </style>

@@ -9,23 +9,22 @@ const { heroText, heroImage, ctaText, ctaLink } = Astro.props;
   <img src={heroImage} alt="decorative" class="full-img" />
   <div class="content">
     <PortableText value={heroText} />
+    {
+      ctaText && ctaLink && (
+        <a href={ctaLink} class="button">
+          <img src={cnpicon.src} alt="" class="icon" />
+          {ctaText}
+        </a>
+      )
+    }
   </div>
-  {
-    ctaText && ctaLink && (
-      <a href={ctaLink} class="button">
-        <img src={cnpicon.src} alt="" class="icon" />
-        {ctaText}
-      </a>
-    )
-  }
 </div>
 
 <style>
   .background {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, auto);
-    gap: 1rem;
+    grid-template-rows: 1fr;
     color: var(--base-light);
     text-align: left;
     overflow: hidden;
@@ -78,16 +77,12 @@ const { heroText, heroImage, ctaText, ctaLink } = Astro.props;
     justify-self: center;
     align-self: start;
   }
-
   .icon {
     position: relative;
     height: 2.375rem;
     width: 2.375rem;
   }
   @media ( width > 580px) {
-    .background {
-      gap: 2rem;
-    }
     h2 {
       font-size: 3rem;
     }
@@ -97,7 +92,6 @@ const { heroText, heroImage, ctaText, ctaLink } = Astro.props;
     .content {
       max-width: 50rem;
       justify-self: center;
-      align-self: end;
       padding: 1rem;
     }
     .button {

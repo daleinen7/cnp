@@ -11,7 +11,7 @@ const { headline, text, image } = Astro.props;
   </div>
   <figure>
     <img src={image} alt="Placeholder image" />
-    <figcaption>shoule we have a caption?</figcaption>
+    <figcaption>should we have a caption?</figcaption>
   </figure>
 </div>
 
@@ -39,7 +39,6 @@ const { headline, text, image } = Astro.props;
   }
   img {
     width: 100%;
-    border-radius: var(--radius);
   }
   figure {
     width: 90%;
@@ -48,6 +47,17 @@ const { headline, text, image } = Astro.props;
   figcaption {
     padding-block: 1rem;
   }
+  .info p {
+  color: var(--black);
+  max-width: 100%;
+  font-size: 1.25rem;
+}
+.info a {
+  color: var(--purple);
+}
+.info a:hover {
+  color: var(--yellow);
+}
   @media (width > 575px) {
     figure {
       max-width: 36rem;

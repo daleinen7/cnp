@@ -13,6 +13,7 @@
   --white: rgb(255, 255, 255);
   --white-transparent: rgb(255, 255, 255, 0);
   --radius: 0.5rem;
+  --image-radius: 0.25rem;
   --transition: 300ms;
 }
 
@@ -82,16 +83,6 @@ a:hover {
   color: var(--yellow);
   text-decoration-color: var(--yellow);
 }
-
-/* Side by side PortableText sytles */
-.info p {
-  color: var(--black);
-  max-width: 100%;
-  font-size: 1.25rem;
-}
-.info a {
-  color: var(--purple);
-}
-.info a:hover {
-  color: var(--yellow);
+img{
+  border-radius: var(--image-radius);
 }

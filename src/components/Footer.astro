@@ -4,41 +4,54 @@ import xIcon from '../images/x-icon.svg';
 import insta from '../images/insta-icon.svg';
 import yt from '../images/yt-icon.svg';
 
-const footerItems = [
-  { name: 'About', href: '/about' },
-  { name: 'Resources', href: '/resources' },
-  { name: 'Volunteer', href: '/volunteer' },
-  { name: 'Support', href: '/support' },
-  { name: 'File A complaint', href: '/complaint' },
-];
+import { loadQuery } from '../sanity/lib/loadQuery';
+import type { NavData, NavItem } from '../lib/types';
+
+const { data: nav } = await loadQuery<NavData>({
+  query: `
+  *[_type == "nav" && title=="Main"][0]{
+    title,
+    navItems[] {
+    name,
+      href,
+      color
+    }
+  }`,
+});
 ---
 
 <footer>
   <div class="wrapper">
     <div class="terms">
-        {new Date().getFullYear()} © Copyright Citizens Network of Protection. All rights reserved.
+      {new Date().getFullYear()} © Copyright Citizens Network of Protection.
+      All rights reserved.
     </div>
     <ul>
       {
-        footerItems.map((item) => (
+        nav.navItems.map((item: NavItem) => (
           <li>
-            <a href={item.href}>{item.name}</a><span class="mobile divider">|</span>
+            <a href={item.href}>{item.name}</a>
+            <span class="mobile divider">|</span>
           </li>
         ))
       }
     </ul>
     <div class="social-media">
       <a href="https://www.facebook.com/CitizensNetworkofProtection/">
-        <img src={fb.src} alt="facebook logo"/>
+        <img src={fb.src} alt="facebook logo" />
       </a>
       <a href="https://x.com/cnpevanston/">
-        <img src={xIcon.src} alt="X logo"/>
+        <img src={xIcon.src} alt="X logo" />
       </a>
-      <a href="https://www.youtube.com/channel/UC6Hht8-0_iIDMUgX9vWWtoQ/">
-        <img src={yt.src} alt="YouTube logo"/>
+      <a
+        href="https://www.youtube.com/channel/UC6Hht8-0_iIDMUgX9vWWtoQ/"
+      >
+        <img src={yt.src} alt="YouTube logo" />
       </a>
-      <a href="https://www.instagram.com/citizensnetworkofprotection/">
-        <img src={insta.src} alt="Instagram logo"/>
+      <a
+        href="https://www.instagram.com/citizensnetworkofprotection/"
+      >
+        <img src={insta.src} alt="Instagram logo" />
       </a>
     </div>
   </div>
@@ -46,30 +59,29 @@ const footerItems = [
 
 <style>
   footer {
-      background: var(--black);
-      color: var(--dark-gray);
-    }
+    background: var(--black);
+    color: var(--dark-gray);
+  }
   .wrapper {
     display: flex;
     flex-direction: column;
     text-align: center;
     gap: 1rem;
-
   }
   ul {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   li:last-child span {
-      display: none;
+    display: none;
   }
   a {
     color: var(--dark-gray);
     height: fit-content;
     border-radius: 0.5rem;
-    padding: .3rem;
+    padding: 0.3rem;
     text-decoration: underline;
     text-decoration-color: var(--dark-gray-transparent);
     transition: all var(--transition);
@@ -78,7 +90,7 @@ const footerItems = [
     color: #aaabac;
   }
   .divider {
-    padding-inline:1rem;
+    padding-inline: 1rem;
   }
   a:hover,
   a:active,
@@ -91,8 +103,8 @@ const footerItems = [
   .social-media a:focus {
     background: var(--yellow);
   }
-  @media( width > 990px) {
-    .mobile{
+  @media (width > 990px) {
+    .mobile {
       display: none;
     }
     .wrapper {
@@ -107,8 +119,7 @@ const footerItems = [
     ul,
     .social-media {
       display: flex;
-      gap:1rem;
+      gap: 1rem;
     }
-}
+  }
 </style>
-

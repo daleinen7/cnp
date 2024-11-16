@@ -31,5 +31,16 @@ export const sideBySide = defineType({
       title: 'CTA Link',
       type: 'string',
     }),
+    defineField({
+      name: 'imageLeft',
+      title: 'Image Left',
+      type: 'boolean',
+      initialValue: true,
+    }),
+    defineField({
+      name: 'figureCaption',
+      title: 'Figure Caption',
+      type: 'string',
+    }),
   ],
 });

@@ -1,17 +1,19 @@
 /* global styles */
 :root {
-  --black: rgb(0, 0, 0);
-  --black-transparent: rgb(0, 0, 0, 0);
-  --dark-purple: rgb(24, 25, 66);
-  --mid-purple: rgb(74, 39, 145);
-  --purple: rgb(139, 106, 215);
-  --light-purple: rgb(183, 160, 236);
-  --yellow: rgb(241, 234, 103);
-  --dark-gray: rgb(104, 104, 104);
-  --dark-gray-transparent: rgb(104, 104, 104, 0);
-  --light-gray: rgb(220, 220, 220);
-  --white: rgb(255, 255, 255);
-  --white-transparent: rgb(255, 255, 255, 0);
+  --black: #000000;
+  --black-transparent: #00000000;
+  --dark-purple: #181942;
+  --mid-purple: #4a2791;
+  --purple: #8b6ad7;
+  --purple-transparent: #8b6ad700;
+  --light-purple: #b7a0ec;
+  --yellow: #f1ea67;
+  --dark-gray: #686868;
+  --dark-gray-transparent: #68686800;
+  --light-gray: #dcdcdc;
+  --lightest-gray: #f1f1f1;
+  --white: #ffffff;
+  --white-transparent: #ffffff00;
   --radius: 0.5rem;
   --image-radius: 0.25rem;
   --transition: 300ms;
@@ -39,6 +41,7 @@ h4,
 h5,
 h6 {
   font-family: 'Montserrat', sans-serif;
+  text-align: center;
 }
 
 .button {
@@ -58,31 +61,67 @@ h6 {
 .wrapper {
   max-width: 80rem;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
+}
+@media (width > 600px) {
+  .wrapper {
+    padding: 2rem;
+  }
 }
 
+/* default text styles */
 h1 {
   font-size: 4.3rem;
   font-weight: 700;
-  text-align: center;
 }
-/* default text styles */
+h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
 p {
   text-align: left;
   font-size: 1.3rem;
   line-height: 125%;
 }
-
+strong {
+  font-weight: 700;
+}
+em {
+  font-style: italic;
+}
+ul {
+  color: var(--dark-gray);
+}
+li:not(.card) {
+  list-style: decimal inside;
+}
+blockquote {
+  display: inline-block;
+  border-left: 5px solid var(--purple);
+  padding: 1rem;
+  margin-block: 1rem;
+  background-color: var(--lightest-gray);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
 /* default link styles */
 a {
-  color: var(--black);
-  text-decoration-color: var(--black-transparent);
-  transition: text-decoration-color, color var(--transition);
+  color: var(--purple);
+  text-decoration-color: var(--purple-transparent);
+  transition: text-decoration-color var(--transition);
 }
 a:hover {
-  color: var(--yellow);
-  text-decoration-color: var(--yellow);
+  color: var(--purple);
+  text-decoration-color: var(--purple);
 }
-img{
+img {
   border-radius: var(--image-radius);
+}
+
+/* Side by side PortableText sytles */
+.info p {
+  font-size: 1.25rem;
 }

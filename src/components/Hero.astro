@@ -8,7 +8,9 @@ const { heroText, heroImage, ctaText, ctaLink } = Astro.props;
 <div class="background">
   <img src={heroImage} alt="decorative" class="full-img" />
   <div class="content">
-    <PortableText value={heroText} />
+    <div class="text">
+      <PortableText value={heroText} />
+    </div>
     {
       ctaText && ctaLink && (
         <a href={ctaLink} class="button">
@@ -35,16 +37,16 @@ const { heroText, heroImage, ctaText, ctaLink } = Astro.props;
       grid-row: 1/2;
       width: 120%;
       object-fit: cover;
+      visibility: hidden;
     }
 
     h2 {
       font-size: 2.75rem;
       margin-bottom: 1rem;
     }
-
-    p {
-      text-wrap: balance;
-    }
+  }
+  p {
+    max-width: 80%;
   }
 
   a {
@@ -66,21 +68,33 @@ const { heroText, heroImage, ctaText, ctaLink } = Astro.props;
     justify-self: center;
     align-self: center;
     max-width: 90%;
-    background: rgb(0, 0, 0, .5);
-    padding: .5rem;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    }
+  .text {
+    padding: 2rem;
     border-radius: var(--radius);
+    background: rgb(0, 0, 0, .5);
   }
   .button {
-    width: 75%;
-    grid-column: 1/2;
-    grid-row:2/3;
-    justify-self: center;
-    align-self: start;
+    flex-basis: 75%;
   }
   .icon {
     position: relative;
     height: 2.375rem;
     width: 2.375rem;
+  }
+  @media ( width > 500px) {
+    .background img.full-img {
+      visibility: visible;
+    }
+    .content {
+      margin: 0;
+    }
   }
   @media ( width > 580px) {
     h2 {

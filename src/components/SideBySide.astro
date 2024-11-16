@@ -47,6 +47,7 @@ const sideBySideClass = imageLeft ? 'image-left' : 'image-right';
     justify-content: center;
     gap: 1rem;
     max-width: 100%;
+    order: 3;
   }
 
   img {
@@ -55,35 +56,15 @@ const sideBySideClass = imageLeft ? 'image-left' : 'image-right';
 
   figure {
     width: 100%;
+    height: auto;
+    order: 2;
   }
 
   figcaption {
     padding-block: 1rem;
   }
-  .info p {
-  color: var(--black);
-  max-width: 100%;
-  font-size: 1.25rem;
-}
-.info a {
-  color: var(--purple);
-}
-.info a:hover {
-  color: var(--yellow);
-}
-    figure {
-      max-width: 36rem;
-      height: auto;
-    }
 
-  /* Mobile-first layout: Heading > Image > Text */
-  .info {
-    order: 3;
-  }
-  figure {
-    order: 2;
-  }
-
+  @media ( width > 990px) { 
   /* Desktop-specific layout */
     .side-by-side {
       flex-direction: row;
@@ -119,6 +100,7 @@ const sideBySideClass = imageLeft ? 'image-left' : 'image-right';
 
     figure {
       width: 50%;
+      max-width: 36rem;
     }
-
+  }
 </style>

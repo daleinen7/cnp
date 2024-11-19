@@ -68,7 +68,6 @@ const { data: nav } = await loadQuery<NavData>({
       aria-controls="menu"
       aria-label="Click to open Navigation"
     >
-      <!-- <img src={burger.src} aria-hidden="true"> -->
     </button>
   </nav>
 </header>
@@ -145,7 +144,12 @@ const { data: nav } = await loadQuery<NavData>({
     transform-origin: 100% 0%;
     translate: 100%;
     scale: 0;
-    transition: all 0.5s ease-in;
+    transition:
+      scale,
+      translate 0.5s ease-in;
+  }
+  li {
+    list-style: none !important;
   }
   button.nav-toggle {
     border: none;

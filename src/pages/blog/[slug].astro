@@ -44,6 +44,8 @@ const { data: blog } = await loadQuery<SanityDocument>({
         _type,
         headline,
         text,
+        imageLeft,
+        figureCaption,
         "image": image.asset->url
       }
 

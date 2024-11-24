@@ -3,6 +3,7 @@ import { blockContent } from './blockContent';
 import { blog } from './blog';
 import { ctaCards } from './ctaCards';
 import faqs from './faq';
+import { form } from './form';
 import { headline } from './headline';
 import { hero } from './hero';
 import { page } from './page';

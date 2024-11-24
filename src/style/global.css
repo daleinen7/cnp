@@ -16,6 +16,7 @@
   --white-transparent: #ffffff00;
   --radius: 0.5rem;
   --image-radius: 0.25rem;
+  --card-radius: 0.875rem;
   --transition: 300ms;
 }
 
@@ -124,4 +125,14 @@ img {
 /* Side by side PortableText sytles */
 .info p {
   font-size: 1.25rem;
+}
+
+/* Portrait Card PortableText sytles */
+.card p {
+  font-size: 0.875rem;
+}
+@media (width > 900px) {
+  .card p {
+    font-size: 1rem;
+  }
 }

@@ -6,7 +6,7 @@ const { faqs } = Astro.props;
 <div class="faq">
   {
     faqs.map((faq: any, idx: number) => (
-      <div class="faq-item">
+      <div class="faq-item ">
         <button class="faq-question" data-index={idx}>
           {faq.question}
           <span class="arrow">▼</span>
@@ -28,7 +28,7 @@ const { faqs } = Astro.props;
         const answer = document.getElementById(`faq-answer-${index}`);
         if (answer) {
           answer.classList.toggle('open');
-          button.classList.toggle('open'); // Toggle open class on button as well
+          button.classList.toggle('open');
         }
       });
     });

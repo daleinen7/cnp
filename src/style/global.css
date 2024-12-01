@@ -58,6 +58,13 @@ h6 {
   border-radius: var(--radius);
   font-size: 1.5rem;
   background: var(--light-gray);
+  transition: filter var(--transition);
+}
+.button:hover {
+  filter: drop-shadow(3px 3px 0 var(--black)); /* color should match the text color of button*/
+}
+a.button:hover {
+  filter: drop-shadow(3px 3px 0 var(--purple)); /* color should match the text color of button*/
 }
 .wrapper {
   max-width: 80rem;

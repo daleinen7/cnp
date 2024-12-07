@@ -7,7 +7,7 @@ const { faqs } = Astro.props;
   {
     faqs.map((faq: any, idx: number) => (
       <div class="faq-item">
-        <button class="faq-question" data-index={idx}>
+        <button type="button" class="faq-question" data-index={idx}>
           {faq.question}
           <span class="arrow">▼</span>
         </button>

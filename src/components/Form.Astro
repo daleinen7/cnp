@@ -1,0 +1,95 @@
+---
+const { form } = Astro.props;
+---
+
+<form>
+  {form.headline && <h2>{form.headline}</h2>}
+  {
+    form.formFields &&
+      form.formFields.map((field, index) => {
+        const isRequired = field.required ? true : false;
+
+        switch (field.type) {
+          case 'text':
+          case 'email':
+          case 'tel':
+          case 'number':
+          case 'date':
+            return (
+              <div key={index}>
+                <label>
+                  {field.label}
+                  <input
+                    type={field.type}
+                    name={field.label}
+                    required={isRequired}
+                  />
+                </label>
+              </div>
+            );
+          case 'textarea':
+            return (
+              <div key={index}>
+                <label>
+                  {field.label}
+                  <textarea
+                    name={field.label}
+                    required={isRequired}
+                  />
+                </label>
+              </div>
+            );
+          case 'checkbox':
+            return (
+              <div key={index}>
+                <label>
+                  <input
+                    type="checkbox"
+                    name={field.label}
+                    required={isRequired}
+                  />
+                  {field.label}
+                </label>
+              </div>
+            );
+          case 'radio':
+            return (
+              <fieldset key={index}>
+                <legend>{field.label}</legend>
+                {field.options &&
+                  field.options.map((option, idx) => (
+                    <label key={idx}>
+                      <input
+                        type="radio"
+                        name={field.label}
+                        value={option.value}
+                        required={isRequired}
+                      />
+                      {option.label}
+                    </label>
+                  ))}
+              </fieldset>
+            );
+          case 'select':
+            return (
+              <div key={index}>
+                <label>
+                  {field.label}
+                  <select name={field.label} required={isRequired}>
+                    {field.options &&
+                      field.options.map((option, idx) => (
+                        <option key={idx} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                  </select>
+                </label>
+              </div>
+            );
+          default:
+            return null;
+        }
+      })
+  }
+  <button type="submit">Submit</button>
+</form>

@@ -1,7 +1,22 @@
 ---
+import type { SanityDocument } from 'sanity';
 import Layout from '../../layouts/Layout.astro';
+import Headline from '../../components/Headline.astro';
+import BlogList from '../../components/BlogList.astro';
+import { loadQuery } from '../../sanity/lib/loadQuery';
+const { data: blogs }: { data: SanityDocument[] } = await loadQuery<
+  SanityDocument[]
+>({
+  query: `*[_type == "blog"] {
+  excerpt,
+  slug,
+  'featuredImage': featuredImage.asset->url,
+  title
+}`,
+});
 ---
 
 <Layout title={'Blogs'}>
-  <h2>Blogs</h2>
+  <Headline headline="Blogs" headingLevel="h2" />
+  <BlogList blogList={blogs} />
 </Layout>

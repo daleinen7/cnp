@@ -82,7 +82,7 @@ const components = page.components || [];
 
 <Layout title={page.title}>
   {
-    components.map((component: any) => {
+    components.map((component: any, idx: number) => {
       switch (component._type) {
         case 'basicContent':
           return <BasicContent content={component.content} />;

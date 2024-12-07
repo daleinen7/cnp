@@ -4,12 +4,14 @@ import PortableText from './PortableText.astro';
 
 interface Card {
   title?: string;
-  slug?: string;
+  slug?: { current: string };
   featuredImage?: string;
   excerpt?: string;
 }
 
 const { blogList } = Astro.props;
+
+console.log(blogList);
 ---
 
 <ul class="cards wrapper">
@@ -18,7 +20,7 @@ const { blogList } = Astro.props;
       blogList.map((card: Card) => {
         const { featuredImage, excerpt, title, slug } = card;
         return (
-          <a href={`/${slug}`} class="card">
+          <a href={`/blog/${slug?.current}`} class="card">
             <figure>
               {featuredImage && <img src={featuredImage} />}
               <figcaption>
@@ -57,7 +59,7 @@ const { blogList } = Astro.props;
     grid-template-rows: auto 1fr 1fr;
   }
   img {
-    border-radius: var(--card-radius)  var(--card-radius) 0 0;
+    border-radius: var(--card-radius) var(--card-radius) 0 0;
     grid-column: 1/3;
     grid-row: 1/3;
     width: 100%;
@@ -80,7 +82,7 @@ const { blogList } = Astro.props;
   figcaption {
     filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     background: var(--white);
-    border-radius: 0 0 var(--card-radius)  var(--card-radius);
+    border-radius: 0 0 var(--card-radius) var(--card-radius);
     padding: 1rem;
     grid-column: 1/3;
     grid-row: 3/4;
@@ -104,7 +106,7 @@ const { blogList } = Astro.props;
     margin-bottom: 1rem;
     display: -webkit-box;
     -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;  
+    -webkit-box-orient: vertical;
     overflow: hidden;
   }
   @media (width > 775px) {

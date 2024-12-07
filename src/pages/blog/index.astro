@@ -17,6 +17,6 @@ const { data: blogs }: { data: SanityDocument[] } = await loadQuery<
 ---
 
 <Layout title={'Blogs'}>
-  <Headline headline="Blogs" headingLevel="2" />
+  <Headline headline="Blogs" headingLevel="h2" />
   <BlogList blogList={blogs} />
 </Layout>

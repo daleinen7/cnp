@@ -4,7 +4,7 @@ export interface HeadlineProps {
 }
 const { headline, headingLevel } = Astro.props;
 
-const Heading = `h${headingLevel}`;
+const Heading = `${headingLevel}`;
 ---
 
 <Heading>{headline}</Heading>

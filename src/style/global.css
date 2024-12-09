@@ -103,9 +103,18 @@ em {
 }
 ul {
   color: var(--dark-gray);
+  margin-left: 1rem;
+}
+ol {
+  margin-left: 1rem;
 }
 li:not(.card) {
   list-style: decimal inside;
+  margin-block: 1rem;
+  font-size: 1.25rem;
+}
+li:not(.card) > ul > li {
+  list-style: inside !important;
 }
 blockquote {
   display: inline-block;

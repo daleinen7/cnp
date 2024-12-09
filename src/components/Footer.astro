@@ -73,9 +73,11 @@ const { data: nav } = await loadQuery<NavData>({
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
   }
   li {
     list-style: none !important;
+    margin-block: 0 !important;
   }
   li:last-child span {
     display: none;

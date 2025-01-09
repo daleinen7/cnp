@@ -1,0 +1,43 @@
+---
+import XLSX from 'xlsx';
+
+const { url } = Astro.props;
+
+async function fetchAndParseXLS(url: string) {
+  const response = await fetch(url);
+  const arrayBuffer = await response.arrayBuffer();
+  const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+
+  // Convert the first sheet to JSON
+  const sheetName = workbook.SheetNames[0];
+  const sheet = workbook.Sheets[sheetName];
+  return XLSX.utils.sheet_to_json(sheet);
+}
+
+const xlsData = await fetchAndParseXLS(url);
+---
+
+<h1>Spreadsheet</h1>
+<table>
+  <thead>
+    <tr>
+      {
+        xlsData.length > 0 &&
+          Object.keys(xlsData[0] as object).map((key) => (
+            <th>{key}</th>
+          ))
+      }
+    </tr>
+  </thead>
+  <tbody>
+    {
+      xlsData.map((row: any) => (
+        <tr>
+          {Object.values(row).map((value: any) => (
+            <td>{value}</td>
+          ))}
+        </tr>
+      ))
+    }
+  </tbody>
+</table>

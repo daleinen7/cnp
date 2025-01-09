@@ -7,13 +7,14 @@ import { form } from './form';
 import { headline } from './headline';
 import { hero } from './hero';
 import { page } from './page';
-import { mediaCards } from './mediaCards';
-import { sideBySide } from './sideBySide';
-import { spacer } from './spacer';
 import { portraitCards } from './portraitCards';
-import { blogList } from './blogList';
+import { mediaCards } from './mediaCards';
 import nav from './nav';
 import navItem from './navItem';
+import { sideBySide } from './sideBySide';
+import { spacer } from './spacer';
+import spreadSheet from './spreadSheet';
+import { blogList } from './blogList';
 
 export const schema = [
   page,
@@ -31,4 +32,5 @@ export const schema = [
   portraitCards,
   sideBySide,
   spacer,
+  spreadSheet,
 ];

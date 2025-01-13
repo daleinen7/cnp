@@ -264,6 +264,9 @@ const { data: nav } = await loadQuery<NavData>({
     }
     nav li:first-child {
       background-color: white;
+      :hover {
+        color: var(--black) !important;
+      }
     }
     li:nth-child(2) .nav-list {
       border: none;

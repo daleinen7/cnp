@@ -32,6 +32,7 @@ export const page = defineType({
         { type: 'portraitCards' },
         { type: 'sideBySide' },
         { type: 'spacer' },
+        { type: 'spreadSheet' },
       ],
     }),
   ],

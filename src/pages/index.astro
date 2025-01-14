@@ -10,6 +10,7 @@ import FAQ from '../components/FAQ.astro';
 import CtaCards from '../components/CtaCards.astro';
 import MediaCards from '../components/MediaCards.astro';
 import PortraitCards from '../components/PortraitCards.astro';
+import SpreadSheet from '../components/SpreadSheet.astro';
 
 export async function getStaticPaths() {
   const { data: page } = await loadQuery<SanityDocument[]>({
@@ -54,7 +55,11 @@ const { data: page } = await loadQuery<SanityDocument>({
         headline,
         text,
         "image": image.asset->url
-      }
+      },
+      _type == 'spreadSheet' => {
+        _type,
+        "url": file.asset->url
+      },
     }
   }`,
   params,
@@ -109,6 +114,8 @@ const components = page.components || [];
           );
         case 'spacer':
           return <div style={{ height: component.height }} />;
+        case 'spreadSheet':
+          return <SpreadSheet spreadSheet={component.spreadSheet} />;
         default:
           return null;
       }

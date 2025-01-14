@@ -6,12 +6,31 @@ const { url } = Astro.props;
 async function fetchAndParseXLS(url: string) {
   const response = await fetch(url);
   const arrayBuffer = await response.arrayBuffer();
-  const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+  const workbook = XLSX.read(arrayBuffer, {
+    type: 'array',
+    raw: true,
+  });
 
-  // Convert the first sheet to JSON
+  // Convert the first sheet to JSON, manually define headers if needed
   const sheetName = workbook.SheetNames[0];
   const sheet = workbook.Sheets[sheetName];
-  return XLSX.utils.sheet_to_json(sheet);
+  const data: (string | null)[][] = XLSX.utils.sheet_to_json(sheet, {
+    header: 1,
+  }); // Get as 2D array
+
+  // Normalize and clean data
+  const headers = data[0];
+  const rows = data.slice(1).map((row) => {
+    const rowData: { [key: string]: string | null } = {};
+    headers.forEach((header, index) => {
+      if (header !== null) {
+        rowData[header] = row[index] || null; // Map headers to values
+      }
+    });
+    return rowData;
+  });
+
+  return rows;
 }
 
 const xlsData = await fetchAndParseXLS(url);
@@ -41,3 +60,62 @@ const xlsData = await fetchAndParseXLS(url);
     }
   </tbody>
 </table>
+
+<style>
+  /* Table Styles */
+  table {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  /* Table Header */
+  table thead tr {
+    background-color: #e0d2ff;
+    color: #000;
+  }
+
+  table th {
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  /* Table Body */
+  table tbody tr:nth-child(even) {
+    background-color: #f4f4f4;
+  }
+
+  table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+
+  table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+
+  /* Hover Effect */
+  table tbody tr:hover {
+    background-color: #b7a0ec;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    table {
+      font-size: 0.9rem;
+    }
+
+    table th,
+    table td {
+      padding: 10px;
+    }
+  }
+</style>

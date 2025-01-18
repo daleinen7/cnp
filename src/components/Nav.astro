@@ -15,6 +15,9 @@ const { data: nav } = await loadQuery<NavData>({
     }
   }`,
 });
+
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname;
 ---
 
 <script>
@@ -40,7 +43,9 @@ const { data: nav } = await loadQuery<NavData>({
       </a>
     </li>
     <li>
-      <a href="/" class="logo desktop"><img src={logo.src} /> Citizen's Network of Protection</a>
+      <a href="/" class="logo desktop"
+        ><img src={logo.src} /> Citizen's Network of Protection</a
+      >
     </li>
     <li class="desktop">
       <a href="tel:+18722352289">
@@ -53,15 +58,17 @@ const { data: nav } = await loadQuery<NavData>({
     </li>
   </ul>
   <nav id="menu">
-    <a href="/" class="logo mobile"><img src={logo.src} /> Citizen's Network of Protection</a>
+    <a href="/" class="logo mobile"
+      ><img src={logo.src} /> Citizen's Network of Protection</a
+    >
     <ul class="nav">
-      <li>
-        <a href="/" class="logo desktop">Home</a>
+      <li class={currentPath === '/' ? 'active' : ''}>
+        <a href="/" class="nav-list">Home</a>
       </li>
       {
         nav.navItems.map((item: NavItem) => (
-          <li>
-            <a class="nav-list"  href={item.href}>
+          <li class={currentPath === item.href ? 'active' : ''}>
+            <a class={`nav-list`} href={item.href}>
               {item.name}
             </a>
           </li>
@@ -88,7 +95,7 @@ const { data: nav } = await loadQuery<NavData>({
     text-decoration: none;
     font-weight: 900;
   }
-  .logo.mobile{
+  .logo.mobile {
     display: flex;
     align-items: center;
     font-size: 1rem;
@@ -132,7 +139,6 @@ const { data: nav } = await loadQuery<NavData>({
     transition: all var(--transition);
   }
   nav ul a:hover {
-    text-decoration: underline;
     background: var(--mid-purple);
     color: var(--white);
   }
@@ -209,7 +215,7 @@ const { data: nav } = await loadQuery<NavData>({
       display: flex;
       justify-content: center;
       align-items: center;
-      gap:1rem;
+      gap: 1rem;
     }
     ul#contact {
       flex-direction: row;
@@ -233,12 +239,17 @@ const { data: nav } = await loadQuery<NavData>({
       position: static;
       z-index: 1;
       padding: 0;
-      margin:0;
+      margin: 0;
       translate: 0;
       scale: 100%;
       box-shadow: none;
       transition: none;
-      background: linear-gradient(90deg, rgba(139,106,215,1) 0%, rgba(139,106,215,1) 33%, rgba(74,39,145,1) 80%);
+      background: linear-gradient(
+        90deg,
+        rgba(139, 106, 215, 1) 0%,
+        rgba(139, 106, 215, 1) 33%,
+        rgba(74, 39, 145, 1) 80%
+      );
     }
     nav li {
       min-width: 8.4rem;
@@ -254,22 +265,23 @@ const { data: nav } = await loadQuery<NavData>({
     nav ul a:hover {
       background-color: transparent;
     }
-    nav li:hover,
-    nav li:active,
-    nav li:focus {
+    nav li:has(a:hover) {
       backdrop-filter: brightness(85%);
     }
+
     .logo {
       padding-block: 0.5rem !important;
     }
-    nav li:first-child {
+    .active {
       background-color: white;
-      :hover {
+      a {
+        color: var(--dark-purple) !important;
+        border: none;
+      }
+      &:hover {
+        background-color: var(--light-purple) !important;
         color: var(--black) !important;
       }
-    }
-    li:nth-child(2) .nav-list {
-      border: none;
     }
   }
   @media (width > 1315px) {

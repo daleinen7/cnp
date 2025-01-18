@@ -18,8 +18,6 @@ const { data: nav } = await loadQuery<NavData>({
 
 const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname;
-
-console.log(currentPath);
 ---
 
 <script>
@@ -65,7 +63,7 @@ console.log(currentPath);
     >
     <ul class="nav">
       <li class={currentPath === '/' ? 'active' : ''}>
-        <a href="/" class="logo desktop">Home</a>
+        <a href="/" class="nav-list">Home</a>
       </li>
       {
         nav.navItems.map((item: NavItem) => (

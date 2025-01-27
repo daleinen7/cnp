@@ -12,6 +12,9 @@
   --dark-gray-transparent: #68686800;
   --light-gray: #dcdcdc;
   --lightest-gray: #f1f1f1;
+  --error-red: #ff5f5f;
+  --pale-red: #e5c9c9;
+  --deep-red: #c94b4b;
   --white: #ffffff;
   --white-transparent: #ffffff00;
   --radius: 0.5rem;

@@ -26,6 +26,7 @@ export const schema = [
   blogList,
   ctaCards,
   faqs,
+  form,
   hero,
   headline,
   mediaCards,

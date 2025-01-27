@@ -1,4 +1,6 @@
 ---
+import type { any } from 'astro:schema';
+
 const { form } = Astro.props;
 ---
 
@@ -6,7 +8,7 @@ const { form } = Astro.props;
   {form.headline && <h2>{form.headline}</h2>}
   {
     form.formFields &&
-      form.formFields.map((field, index) => {
+      form.formFields.map((field: any) => {
         const isRequired = field.required ? true : false;
 
         switch (field.type) {
@@ -16,7 +18,7 @@ const { form } = Astro.props;
           case 'number':
           case 'date':
             return (
-              <div key={index}>
+              <div>
                 <label>
                   {field.label}
                   <input
@@ -29,7 +31,7 @@ const { form } = Astro.props;
             );
           case 'textarea':
             return (
-              <div key={index}>
+              <div>
                 <label>
                   {field.label}
                   <textarea
@@ -41,7 +43,7 @@ const { form } = Astro.props;
             );
           case 'checkbox':
             return (
-              <div key={index}>
+              <div>
                 <label>
                   <input
                     type="checkbox"
@@ -54,11 +56,11 @@ const { form } = Astro.props;
             );
           case 'radio':
             return (
-              <fieldset key={index}>
+              <fieldset>
                 <legend>{field.label}</legend>
                 {field.options &&
-                  field.options.map((option, idx) => (
-                    <label key={idx}>
+                  field.options.map((option: any) => (
+                    <label>
                       <input
                         type="radio"
                         name={field.label}
@@ -72,13 +74,13 @@ const { form } = Astro.props;
             );
           case 'select':
             return (
-              <div key={index}>
+              <div>
                 <label>
                   {field.label}
                   <select name={field.label} required={isRequired}>
                     {field.options &&
-                      field.options.map((option, idx) => (
-                        <option key={idx} value={option.value}>
+                      field.options.map((option: any) => (
+                        <option value={option.value}>
                           {option.label}
                         </option>
                       ))}

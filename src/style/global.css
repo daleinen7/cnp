@@ -21,6 +21,9 @@
   --image-radius: 0.25rem;
   --card-radius: 0.875rem;
   --transition: 300ms;
+  --error-red: #ff5f5f;
+  --pale-red: #e5c9c9;
+  --deep-red: #c94b4b;
 }
 
 html {
@@ -64,10 +67,14 @@ h6 {
   transition: filter var(--transition);
 }
 .button:hover {
-  filter: drop-shadow(3px 3px 0 var(--black)); /* color should match the text color of button*/
+  filter: drop-shadow(
+    3px 3px 0 var(--black)
+  ); /* color should match the text color of button*/
 }
 a.button:hover {
-  filter: drop-shadow(3px 3px 0 var(--purple)); /* color should match the text color of button*/
+  filter: drop-shadow(
+    3px 3px 0 var(--purple)
+  ); /* color should match the text color of button*/
 }
 .wrapper {
   max-width: 80rem;

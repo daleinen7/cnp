@@ -26,6 +26,7 @@ export const page = defineType({
         { type: 'blogList' },
         { type: 'ctaCards' },
         { type: 'faqs' },
+        { type: 'form' },
         { type: 'headline' },
         { type: 'hero' },
         { type: 'mediaCards' },

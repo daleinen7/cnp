@@ -1,0 +1,101 @@
+---
+import Layout from "../layouts/Layout.astro"
+---
+
+<Layout title={"form"}>
+    <h2>Contact Us Today</h2>
+    <form>
+        <fieldset>
+            <legend>Name:<span class="marked-required">*</span></legend>
+            <label for="fname">First Name</label>
+            <input id="fname" name="fname" type="text" placeholder="First" required/>
+            <label for="lname">Last Name</label>
+            <input id="lname" name="lname" type="text" placeholder="Last" required/>
+        </fieldset>
+        <label for="email">Email:<span class="marked-required">*</span></label>
+        <input type="email" id="email" placeholder="example@gmail.com" required/>
+        <label for="message">Comment or Message<span class="marked-required">*</span></label>
+        <textarea id="message" name="message" placeholder="Type youre message here." required/>
+        <button type="submit">Submit</button>
+    </form>
+</Layout>
+
+<style>
+    form {
+        width: 90%;
+        margin: 2rem auto;
+        display: flex;
+        flex-direction:column;
+        max-width: 59rem;
+    }
+    fieldset {
+        display: flex;
+        gap: 1rem;
+        flex-flow: row wrap;
+        margin-bottom: 1rem;
+    }
+    /* visually hide the labels in the fieldset, but is still accessible to screenreaders */
+    fieldset label {
+        clip: rect(0 0 0 0); 
+        clip-path: inset(50%);
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap; 
+        width: 1px;
+        height: 1px;
+    }
+    fieldset input {
+        margin: 0;
+        width: 100%;
+    }
+    input {
+        border-radius: var(--radius);
+        border: 1px solid var(--dark-gray);
+        height: 2.75rem;
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+    }
+    label, 
+    legend {
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+    }
+    textarea {
+        border-radius: var(--radius);
+        border: 1px solid var(--dark-gray);
+        height: 10rem;
+        margin-bottom: 1rem;
+        padding: 1rem;
+    }
+    input:user-invalid,
+    textarea:user-invalid {
+        border-color: var(--error-red);
+        color: var(--error-red);
+    }
+    .marked-required {
+        color: var(--error-red);
+    }
+    button {
+        border-radius: var(--radius);
+        background: var(--light-gray);
+        height: 2.75rem;
+        border: none;
+        font-weight: 700;
+        font-size: 1.25rem;
+    }
+    button:hover {
+        cursor: pointer;
+    }
+    form:has(input:user-invalid, textarea:user-invalid) button{
+        color: var(--deep-red);
+        background-color: var(--pale-red);
+    }
+    @media (width > 768px) {
+        fieldset {
+            flex-wrap: nowrap;
+        }
+        fieldset input {
+            flex-basis: 48%;
+        }
+    }
+</style>

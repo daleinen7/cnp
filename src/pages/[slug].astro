@@ -43,16 +43,6 @@ const { data: page } = await loadQuery<SanityDocument>({
           "featuredImage": featuredImage.asset->url
         },
       },
-      _type == 'form' => {
-        _type,
-        form{
-          headline,
-          formFields[]{
-            ...,
-            "required": required == true
-          }
-        }
-      },
       _type == 'headline' => {
         _type,
         headline
@@ -109,7 +99,14 @@ const components = page.components || [];
         case 'faqs':
           return <FAQ faqs={component.faq} />;
         case 'form':
-          return <Form form={component.form} />;
+          return (
+            <Form
+              form={{
+                formFields: component.formFields,
+                headline: component.headline,
+              }}
+            />
+          );
         case 'headline':
           return (
             <Headline

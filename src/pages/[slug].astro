@@ -13,6 +13,7 @@ import PortraitCards from '../components/PortraitCards.astro';
 import BlogList from '../components/BlogList.astro';
 import SpreadSheet from '../components/SpreadSheet.astro';
 import Form from '../components/FormS.astro';
+import Spacer from '../components/Spacer.astro';
 
 export async function getStaticPaths() {
   const { data: page } = await loadQuery<SanityDocument[]>({
@@ -74,6 +75,10 @@ const { data: page } = await loadQuery<SanityDocument>({
         figureCaption,
         "image": image.asset->url
       },
+      _type == 'spacer' => {
+        _type,
+        height
+      },
       _type == 'spreadSheet' => {
         _type,
         "url": file.asset->url
@@ -134,10 +139,10 @@ const components = page.components || [];
               image={component.image}
             />
           );
+        case 'spacer':
+          return <Spacer height={component.height} />;
         case 'spreadSheet':
           return <SpreadSheet url={component.url} />;
-        case 'spacer':
-          return <div style={{ height: component.height }} />;
         default:
           return null;
       }

@@ -40,6 +40,10 @@ const { data: blog } = await loadQuery<SanityDocument>({
         _type,
         headline
       },
+      _type == 'spacer' => {
+        _type,
+        height
+      },
       _type == 'sideBySide' => {
         _type,
         headline,

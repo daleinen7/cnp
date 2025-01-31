@@ -56,6 +56,10 @@ const { data: page } = await loadQuery<SanityDocument>({
         text,
         "image": image.asset->url
       },
+      _type == 'spacer' => {
+        _type,
+        height
+      },
       _type == 'spreadSheet' => {
         _type,
         "url": file.asset->url

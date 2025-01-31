@@ -1,0 +1,13 @@
+---
+const { height } = Astro.props;
+console.log('HEIGHT: ', height);
+---
+
+<div class="spacer"></div>
+
+<style define:vars={{ height }}>
+  .spacer {
+    height: var(--height);
+    display: block;
+  }
+</style>

@@ -11,7 +11,7 @@ import CtaCards from '../components/CtaCards.astro';
 import MediaCards from '../components/MediaCards.astro';
 import PortraitCards from '../components/PortraitCards.astro';
 import SpreadSheet from '../components/SpreadSheet.astro';
-import Form from './form.astro';
+import FormS from '../components/FormS.astro';
 
 export async function getStaticPaths() {
   const { data: page } = await loadQuery<SanityDocument[]>({
@@ -84,7 +84,7 @@ const components = page.components || [];
         case 'faqs':
           return <FAQ faqs={component.faq} />;
         case 'form':
-          return <Form form={component} />;
+          return <FormS form={component} />;
         case 'headline':
           return (
             <Headline

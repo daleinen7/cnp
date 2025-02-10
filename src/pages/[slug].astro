@@ -81,7 +81,8 @@ const { data: page } = await loadQuery<SanityDocument>({
       },
       _type == 'spreadSheet' => {
         _type,
-        "url": file.asset->url
+        "url": file.asset->url,
+        title
       },
     }
   }`,
@@ -142,7 +143,12 @@ const components = page.components || [];
         case 'spacer':
           return <Spacer height={component.height} />;
         case 'spreadSheet':
-          return <SpreadSheet url={component.url} />;
+          return (
+            <SpreadSheet
+              url={component.url}
+              title={component.title}
+            />
+          );
         default:
           return null;
       }

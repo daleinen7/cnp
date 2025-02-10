@@ -11,6 +11,12 @@ export const form = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'name',
+      title: 'Name',
+      type: 'string',
+      description: 'This field should match the form name in Netlify',
+    }),
+    defineField({
       name: 'formFields',
       title: 'Form Fields',
       type: 'array',

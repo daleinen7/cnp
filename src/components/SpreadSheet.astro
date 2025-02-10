@@ -1,7 +1,7 @@
 ---
 import XLSX from 'xlsx';
 
-const { url } = Astro.props;
+const { url, title } = Astro.props;
 
 async function fetchAndParseXLS(url: string) {
   const response = await fetch(url);
@@ -36,7 +36,7 @@ async function fetchAndParseXLS(url: string) {
 const xlsData = await fetchAndParseXLS(url);
 ---
 
-<h1>Spreadsheet</h1>
+<h1>{title}</h1>
 <table>
   <thead>
     <tr>

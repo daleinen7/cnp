@@ -2,8 +2,14 @@
 const { form } = Astro.props;
 ---
 
-<form>
+<form
+  name={form.name}
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+>
   {form.headline && <h2>{form.headline}</h2>}
+
   {
     form.formFields &&
       form.formFields.map((field: any) => {
@@ -93,6 +99,8 @@ const { form } = Astro.props;
         }
       })
   }
+  <!-- Honeypot field (hidden from users but visible to bots) -->
+  <input type="text" name="bot-field" style="display: none;" />
   <button type="submit">Submit</button>
 </form>
 

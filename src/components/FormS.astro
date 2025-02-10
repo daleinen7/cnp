@@ -1,5 +1,10 @@
 ---
 const { form } = Astro.props;
+
+// Convert labels to slug-safe names for Netlify compatibility
+function toSlug(text: string) {
+  return text.toLowerCase().replace(/\s+/g, '-');
+}
 ---
 
 <form
@@ -8,186 +13,124 @@ const { form } = Astro.props;
   data-netlify="true"
   netlify-honeypot="bot-field"
 >
+  <!-- Hidden field ensures Netlify recognizes the form -->
+  <input type="hidden" name="form-name" value={form.name} />
+
   {form.headline && <h2>{form.headline}</h2>}
-  <input type="hidden" name="form-name" value="contact" />
 
-  {
-    form.formFields &&
-      form.formFields.map((field: any) => {
-        const isRequired = field.required ? true : false;
+  <ul>
+    {
+      form.formFields &&
+        form.formFields.map(
+          (field: {
+            label: string;
+            type: string;
+            required?: boolean;
+            options?: { label: string; value: string }[];
+          }) => {
+            const isRequired = field.required ? true : false;
+            const fieldName = toSlug(field.label); // Convert field label to a safe name
 
-        switch (field.type) {
-          case 'text':
-          case 'email':
-          case 'tel':
-          case 'number':
-          case 'date':
-            return (
-              <li>
-                <label>
-                  {field.label}
-                  <input
-                    type={field.type}
-                    name={field.label}
-                    required={isRequired}
-                  />
-                </label>
-              </li>
-            );
-          case 'textarea':
-            return (
-              <li>
-                <label>
-                  {field.label}
-                  <textarea
-                    name={field.label}
-                    required={isRequired}
-                  />
-                </label>
-              </li>
-            );
-          case 'checkbox':
-            return (
-              <li>
-                <label>
-                  <input
-                    type="checkbox"
-                    name={field.label}
-                    required={isRequired}
-                  />
-                  {field.label}
-                </label>
-              </li>
-            );
-          case 'radio':
-            return (
-              <li>
-                <fieldset>
-                  <legend>{field.label}</legend>
-                  {field.options &&
-                    field.options.map((option: any) => (
-                      <label>
-                        <input
-                          type="radio"
-                          name={field.label}
-                          value={option.value}
-                          required={isRequired}
-                        />
-                        {option.label}
-                      </label>
-                    ))}
-                </fieldset>
-              </li>
-            );
-          case 'select':
-            return (
-              <li>
-                <label>
-                  {field.label}
-                  <select name={field.label} required={isRequired}>
-                    {field.options &&
-                      field.options.map((option: any) => (
-                        <option value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
-                  </select>
-                </label>
-              </li>
-            );
-          default:
-            return null;
-        }
-      })
-  }
-  <!-- Honeypot field (hidden from users but visible to bots) -->
+            switch (field.type) {
+              case 'text':
+              case 'email':
+              case 'tel':
+              case 'number':
+              case 'date':
+                return (
+                  <li>
+                    <label for={fieldName}>
+                      {field.label}
+                      <input
+                        id={fieldName}
+                        type={field.type}
+                        name={fieldName}
+                        required={isRequired}
+                      />
+                    </label>
+                  </li>
+                );
+              case 'textarea':
+                return (
+                  <li>
+                    <label for={fieldName}>
+                      {field.label}
+                      <textarea
+                        id={fieldName}
+                        name={fieldName}
+                        required={isRequired}
+                      />
+                    </label>
+                  </li>
+                );
+              case 'checkbox':
+                return (
+                  <li>
+                    <label for={fieldName}>
+                      <input
+                        id={fieldName}
+                        type="checkbox"
+                        name={fieldName}
+                        required={isRequired}
+                      />
+                      {field.label}
+                    </label>
+                  </li>
+                );
+              case 'radio':
+                return (
+                  <li>
+                    <fieldset>
+                      <legend>{field.label}</legend>
+                      {field.options &&
+                        field.options.map((option) => {
+                          const optionName = toSlug(option.label);
+                          return (
+                            <label for={`${fieldName}-${optionName}`}>
+                              <input
+                                id={`${fieldName}-${optionName}`}
+                                type="radio"
+                                name={fieldName}
+                                value={option.value}
+                                required={isRequired}
+                              />
+                              {option.label}
+                            </label>
+                          );
+                        })}
+                    </fieldset>
+                  </li>
+                );
+              case 'select':
+                return (
+                  <li>
+                    <label for={fieldName}>
+                      {field.label}
+                      <select
+                        id={fieldName}
+                        name={fieldName}
+                        required={isRequired}
+                      >
+                        {field.options &&
+                          field.options.map((option) => (
+                            <option value={option.value}>
+                              {option.label}
+                            </option>
+                          ))}
+                      </select>
+                    </label>
+                  </li>
+                );
+              default:
+                return null;
+            }
+          }
+        )
+    }
+  </ul>
+
+  <!-- Honeypot Field (Hidden from Users, Visible to Bots) -->
   <input type="text" name="bot-field" style="display: none;" />
+
   <button type="submit">Submit</button>
 </form>
-
-<style>
-  form {
-    width: 90%;
-    margin: 2rem auto;
-    display: flex;
-    flex-direction: column;
-    max-width: 59rem;
-  }
-  fieldset {
-    display: flex;
-    gap: 1rem;
-    flex-flow: row wrap;
-    margin-bottom: 1rem;
-  }
-  /* visually hide the labels in the fieldset, but is still accessible to screenreaders */
-  fieldset label {
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-    height: 1px;
-  }
-  fieldset input {
-    margin: 0;
-    width: 100%;
-  }
-  input {
-    border-radius: var(--radius);
-    border: 1px solid var(--dark-gray);
-    height: 2.75rem;
-    margin-bottom: 1rem;
-    padding-left: 1rem;
-  }
-  label,
-  legend {
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-  }
-  li {
-    list-style: none;
-  }
-  li > label {
-    display: flex;
-    flex-direction: column;
-  }
-  textarea {
-    border-radius: var(--radius);
-    border: 1px solid var(--dark-gray);
-    height: 10rem;
-    margin-bottom: 1rem;
-    padding: 1rem;
-  }
-  input:user-invalid,
-  textarea:user-invalid {
-    border-color: var(--error-red);
-    color: var(--error-red);
-  }
-  .marked-required {
-    color: var(--error-red);
-  }
-  button {
-    border-radius: var(--radius);
-    background: var(--light-gray);
-    height: 2.75rem;
-    border: none;
-    font-weight: 700;
-    font-size: 1.25rem;
-  }
-  button:hover {
-    cursor: pointer;
-  }
-  form:has(input:user-invalid, textarea:user-invalid) button {
-    color: var(--deep-red);
-    background-color: var(--pale-red);
-  }
-  @media (width > 768px) {
-    fieldset {
-      flex-wrap: nowrap;
-    }
-    fieldset input {
-      flex-basis: 48%;
-    }
-  }
-</style>

@@ -86,7 +86,16 @@ a.button:hover {
     padding: 2rem;
   }
 }
-
+/* visually hide the labels in the fieldset, but is still accessible to screenreaders */
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+}
 /* default text styles */
 h1 {
   font-size: 4.3rem;
@@ -134,6 +143,7 @@ blockquote {
   background-color: var(--lightest-gray);
   border-radius: 0 var(--radius) var(--radius) 0;
 }
+
 /* default link styles */
 a {
   color: var(--purple);

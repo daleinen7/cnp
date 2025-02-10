@@ -2,7 +2,7 @@
 const { form } = Astro.props;
 ---
 
-<form>
+<form class="wrapper">
   {form.headline && <h2>{form.headline}</h2>}
   {
     form.formFields &&
@@ -16,47 +16,43 @@ const { form } = Astro.props;
           case 'number':
           case 'date':
             return (
-              <li>
                 <label>
-                  {field.label}
+                  {field.label}{isRequired ? <span class="marked-required">*</span> : null}
                   <input
                     type={field.type}
                     name={field.label}
+                    placeholder={field.label}
                     required={isRequired}
                   />
                 </label>
-              </li>
             );
           case 'textarea':
             return (
-              <li>
                 <label>
-                  {field.label}
+                  {field.label}{isRequired ? <span class="marked-required">*</span> : null}
                   <textarea
                     name={field.label}
+                    placeholder={field.label}
                     required={isRequired}
                   />
                 </label>
-              </li>
             );
           case 'checkbox':
             return (
-              <li>
                 <label>
                   <input
                     type="checkbox"
                     name={field.label}
+                    placeholder={field.label}
                     required={isRequired}
                   />
-                  {field.label}
+                  {field.label}{isRequired ? <span class="marked-required">*</span> : null}
                 </label>
-              </li>
             );
           case 'radio':
             return (
-              <li>
                 <fieldset>
-                  <legend>{field.label}</legend>
+                  <legend>{field.label}{isRequired ? <span class="marked-required">*</span> : null}</legend>
                   {field.options &&
                     field.options.map((option: any) => (
                       <label>
@@ -70,11 +66,9 @@ const { form } = Astro.props;
                       </label>
                     ))}
                 </fieldset>
-              </li>
             );
           case 'select':
             return (
-              <li>
                 <label>
                   {field.label}
                   <select name={field.label} required={isRequired}>
@@ -86,7 +80,6 @@ const { form } = Astro.props;
                       ))}
                   </select>
                 </label>
-              </li>
             );
           default:
             return null;
@@ -98,11 +91,9 @@ const { form } = Astro.props;
 
 <style>
   form {
-    width: 90%;
     margin: 2rem auto;
     display: flex;
     flex-direction: column;
-    max-width: 59rem;
   }
   fieldset {
     display: flex;
@@ -110,44 +101,45 @@ const { form } = Astro.props;
     flex-flow: row wrap;
     margin-bottom: 1rem;
   }
-  /* visually hide the labels in the fieldset, but is still accessible to screenreaders */
-  fieldset label {
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    overflow: hidden;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-    height: 1px;
-  }
   fieldset input {
     margin: 0;
     width: 100%;
   }
-  input {
+  input,
+  select {
     border-radius: var(--radius);
     border: 1px solid var(--dark-gray);
     height: 2.75rem;
-    margin-bottom: 1rem;
-    padding-left: 1rem;
+    margin-block: 0.25rem 1rem;
+    padding-inline: 1rem;
   }
   label,
   legend {
     font-weight: 700;
-    margin-bottom: 0.25rem;
   }
-  li {
-    list-style: none;
-  }
-  li > label {
+
+  label {
     display: flex;
     flex-direction: column;
+  }
+  label:has(input[type=checkbox]),
+  label:has(input[type=radio]) {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+  input[type=checkbox] {
+    margin: 0;
+  }
+  input[type=radio] {
+    height: 1rem;
+    margin: 0;
   }
   textarea {
     border-radius: var(--radius);
     border: 1px solid var(--dark-gray);
     height: 10rem;
-    margin-bottom: 1rem;
+    margin-block: 0.25rem 1rem;
     padding: 1rem;
   }
   input:user-invalid,
@@ -174,10 +166,10 @@ const { form } = Astro.props;
     background-color: var(--pale-red);
   }
   @media (width > 768px) {
-    fieldset {
+    fieldset:not(:has(input[type=radio])) {
       flex-wrap: nowrap;
     }
-    fieldset input {
+    fieldset input:not(input[type=radio]) {
       flex-basis: 48%;
     }
   }

@@ -7,9 +7,9 @@ import Layout from "../layouts/Layout.astro"
     <form>
         <fieldset>
             <legend>Name:<span class="marked-required">*</span></legend>
-            <label for="fname">First Name</label>
+            <label class="visually-hidden" for="fname">First Name</label>
             <input id="fname" name="fname" type="text" placeholder="First" required/>
-            <label for="lname">Last Name</label>
+            <label class="visually-hidden" for="lname">Last Name</label>
             <input id="lname" name="lname" type="text" placeholder="Last" required/>
         </fieldset>
         <label for="email">Email:<span class="marked-required">*</span></label>
@@ -33,16 +33,6 @@ import Layout from "../layouts/Layout.astro"
         gap: 1rem;
         flex-flow: row wrap;
         margin-bottom: 1rem;
-    }
-    /* visually hide the labels in the fieldset, but is still accessible to screenreaders */
-    fieldset label {
-        clip: rect(0 0 0 0); 
-        clip-path: inset(50%);
-        overflow: hidden;
-        position: absolute;
-        white-space: nowrap; 
-        width: 1px;
-        height: 1px;
     }
     fieldset input {
         margin: 0;

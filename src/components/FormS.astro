@@ -9,7 +9,7 @@ const { form } = Astro.props;
   netlify-honeypot="bot-field"
 >
   {form.headline && <h2>{form.headline}</h2>}
-  <input type="hidden" name={form.name} value="contact" />
+  <input type="hidden" name="form-name" value="contact" />
 
   {
     form.formFields &&

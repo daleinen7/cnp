@@ -15,6 +15,7 @@ import SpreadSheet from '../components/SpreadSheet.astro';
 import Form from '../components/FormS.astro';
 import Spacer from '../components/Spacer.astro';
 import Donate from '../components/Donate.astro';
+import FormC from '../components/FormC.astro';
 
 export async function getStaticPaths() {
   const { data: page } = await loadQuery<SanityDocument[]>({
@@ -101,6 +102,8 @@ const components = page.components || [];
           return <BasicContent content={component.content} />;
         case 'blogList':
           return <BlogList blogList={component.blogList} />;
+        case 'complaintForm':
+          return <FormC />;
         case 'ctaCards':
           return <CtaCards ctaCardList={component.ctaCardList} />;
         case 'donate':

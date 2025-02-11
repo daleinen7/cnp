@@ -1,8 +1,8 @@
 import { defineField, defineType } from 'sanity';
 
-export const form = defineType({
-  name: 'form',
-  title: 'Contact Form',
+export const complaintForm = defineType({
+  name: 'complaintForm',
+  title: 'Complaint Form',
   type: 'object',
   fields: [
     defineField({

@@ -2,7 +2,6 @@
 const { form } = Astro.props;
 ---
 
-<h2>Contact Us Today</h2>
 <form name="contact" method="POST" data-netlify="true">
   <input type="hidden" name="form-name" value="contact" />
   <fieldset>
@@ -32,6 +31,13 @@ const { form } = Astro.props;
     id="email"
     placeholder="example@gmail.com"
     required
+  />
+  <label for="phone">Phone Number</label>
+  <input
+    type="tel"
+    id="phone"
+    placeholder="123-456-7890"
+    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
   />
   <label for="message"
     >Comment or Message<span class="marked-required">*</span></label

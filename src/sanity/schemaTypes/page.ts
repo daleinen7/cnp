@@ -24,6 +24,7 @@ export const page = defineType({
       of: [
         { type: 'basicContent' },
         { type: 'blogList' },
+        { type: 'complaintForm' },
         { type: 'ctaCards' },
         { type: 'donate' },
         { type: 'faqs' },

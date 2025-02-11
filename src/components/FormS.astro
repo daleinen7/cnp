@@ -2,7 +2,7 @@
 const { form } = Astro.props;
 ---
 
-<form class="wrapper">
+<form class="wrapper narrow-wrapper">
   {form.headline && <h2>{form.headline}</h2>}
   {
     form.formFields &&
@@ -70,7 +70,7 @@ const { form } = Astro.props;
           case 'select':
             return (
                 <label>
-                  {field.label}
+                  {field.label}{isRequired ? <span class="marked-required">*</span> : null}
                   <select name={field.label} required={isRequired}>
                     {field.options &&
                       field.options.map((option: any) => (
@@ -95,9 +95,12 @@ const { form } = Astro.props;
     display: flex;
     flex-direction: column;
   }
+  h2 {
+    margin-bottom: 3rem;
+  }
   fieldset {
     display: flex;
-    gap: 1rem;
+    gap: 2.5rem;
     flex-flow: row wrap;
     margin-bottom: 1rem;
   }
@@ -106,41 +109,62 @@ const { form } = Astro.props;
     width: 100%;
   }
   input,
-  select {
+  select,
+  textarea {
+    display: block;
     border-radius: var(--radius);
     border: 1px solid var(--dark-gray);
     height: 2.75rem;
-    margin-block: 0.25rem 1rem;
-    padding-inline: 1rem;
+    margin-block: 0.5rem 1.5rem;
+    padding-left: 1rem;
+  }
+  input {
+    width: calc(100% - 1rem);
+  }
+  textarea {
+    height: 10rem;
+    padding: 1rem;
+    width: calc(100% - 2rem);
+  }
+  select {
+    width: 100%;
+  }
+
+  input:hover,
+  select:hover,
+  textarea:hover,
+  input:active,
+  input:focus,
+  input:focus-visible,
+  select:active,
+  select:focus,
+  select:focus-visible,
+  textarea:active,
+  textarea:focus,
+  textarea:focus-visible {
+    border: 2px solid var(--mid-purple);
+    outline: none;
   }
   label,
   legend {
     font-weight: 700;
   }
 
-  label {
-    display: flex;
-    flex-direction: column;
-  }
   label:has(input[type=checkbox]),
   label:has(input[type=radio]) {
+    display: flex;
     flex-direction: row;
     align-items: center;
     gap: 1rem;
   }
-  input[type=checkbox] {
-    margin: 0;
-  }
-  input[type=radio] {
-    height: 1rem;
-    margin: 0;
-  }
-  textarea {
-    border-radius: var(--radius);
-    border: 1px solid var(--dark-gray);
-    height: 10rem;
-    margin-block: 0.25rem 1rem;
-    padding: 1rem;
+    input[type=checkbox] {
+      margin: 0.25rem 0 0 0;
+    }
+    input[type=checkbox],
+    input[type=radio] {
+      accent-color: var(--mid-purple);
+      width: 1rem !important;
+      accent-color: var(--mid-purple);
   }
   input:user-invalid,
   textarea:user-invalid {
@@ -157,9 +181,14 @@ const { form } = Astro.props;
     border: none;
     font-weight: 700;
     font-size: 1.25rem;
+    margin-top: 1rem;
+    transition: filter var(--transition);
   }
   button:hover {
     cursor: pointer;
+    filter: drop-shadow(
+      3px 3px 0 var(--black)
+    );
   }
   form:has(input:user-invalid, textarea:user-invalid) button {
     color: var(--deep-red);

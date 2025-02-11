@@ -81,6 +81,9 @@ a.button:hover {
   margin: 0 auto;
   padding: 1rem;
 }
+.narrow-wrapper {
+  max-width: 40rem;
+}
 @media (width > 600px) {
   .wrapper {
     padding: 2rem;
@@ -113,6 +116,7 @@ p {
   text-align: left;
   font-size: 1.3rem;
   line-height: 125%;
+  margin-bottom: 1rem;
 }
 strong {
   font-weight: 700;

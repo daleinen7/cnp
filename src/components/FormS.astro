@@ -1,114 +1,137 @@
 ---
 const { form } = Astro.props;
 
-function toSlug(text: string) {
-  return text.toLowerCase().replace(/\s+/g, '-');
+// Ensure field labels are converted to safe names
+function toSlug(text) {
+  return text
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '');
 }
 ---
 
 <form
-  name={form.name}
+  name="contact"
   method="POST"
   data-netlify="true"
   netlify-honeypot="bot-field"
 >
+  <!-- Important: Hidden field ensures Netlify recognizes the form -->
+  <input type="hidden" name="form-name" value="contact" />
+
   {form.headline && <h2>{form.headline}</h2>}
-  <input type="hidden" name="form-name" value={form.name} />
-  {
-    form.formFields &&
-      form.formFields.map((field: any) => {
-        const isRequired = field.required ? true : false;
-        switch (field.type) {
-          case 'text':
-          case 'email':
-          case 'tel':
-          case 'number':
-          case 'date':
-            return (
-              <li>
-                <label>
-                  {field.label}
-                  <input
-                    type={field.type}
-                    name={toSlug(field.label)}
-                    required={isRequired}
-                  />
-                </label>
-              </li>
-            );
-          case 'textarea':
-            return (
-              <li>
-                <label>
-                  {field.label}
-                  <textarea
-                    name={toSlug(field.label)}
-                    required={isRequired}
-                  />
-                </label>
-              </li>
-            );
-          case 'checkbox':
-            return (
-              <li>
-                <label>
-                  <input
-                    type="checkbox"
-                    name={toSlug(field.label)}
-                    required={isRequired}
-                  />
-                  {field.label}
-                </label>
-              </li>
-            );
-          case 'radio':
-            return (
-              <li>
-                <fieldset>
-                  <legend>{field.label}</legend>
-                  {field.options &&
-                    field.options.map((option: any) => (
-                      <label>
-                        <input
-                          type="radio"
-                          name={toSlug(field.label)}
-                          value={option.value}
-                          required={isRequired}
-                        />
-                        {option.label}
-                      </label>
-                    ))}
-                </fieldset>
-              </li>
-            );
-          case 'select':
-            return (
-              <li>
-                <label>
-                  {field.label}
-                  <select
-                    name={toSlug(field.label)}
-                    required={isRequired}
-                  >
+
+  <ul>
+    {
+      form.formFields &&
+        form.formFields.map((field, index) => {
+          const isRequired = field.required ? true : false;
+          const fieldName = toSlug(field.label); // Ensure safe field name
+          const fieldId = `${fieldName}-${index}`; // Unique ID for each field
+
+          switch (field.type) {
+            case 'text':
+            case 'email':
+            case 'tel':
+            case 'number':
+            case 'date':
+              return (
+                <li>
+                  <label for={fieldId}>
+                    {field.label}
+                    <input
+                      id={fieldId}
+                      type={field.type}
+                      name={fieldName}
+                      required={isRequired}
+                    />
+                  </label>
+                </li>
+              );
+            case 'textarea':
+              return (
+                <li>
+                  <label for={fieldId}>
+                    {field.label}
+                    <textarea
+                      id={fieldId}
+                      name={fieldName}
+                      required={isRequired}
+                    />
+                  </label>
+                </li>
+              );
+            case 'checkbox':
+              return (
+                <li>
+                  <label for={fieldId}>
+                    <input
+                      id={fieldId}
+                      type="checkbox"
+                      name={fieldName}
+                      required={isRequired}
+                    />
+                    {field.label}
+                  </label>
+                </li>
+              );
+            case 'radio':
+              return (
+                <li>
+                  <fieldset>
+                    <legend>{field.label}</legend>
                     {field.options &&
-                      field.options.map((option: any) => (
-                        <option value={option.value}>
-                          {option.label}
-                        </option>
-                      ))}
-                  </select>
-                </label>
-              </li>
-            );
-          default:
-            return null;
-        }
-      })
-  }
-  <!-- Honeypot field (hidden from users but visible to bots) -->
+                      field.options.map((option, optIndex) => {
+                        const optionId = `${fieldName}-${optIndex}`;
+                        return (
+                          <label for={optionId}>
+                            <input
+                              id={optionId}
+                              type="radio"
+                              name={fieldName}
+                              value={option.value}
+                              required={isRequired}
+                            />
+                            {option.label}
+                          </label>
+                        );
+                      })}
+                  </fieldset>
+                </li>
+              );
+            case 'select':
+              return (
+                <li>
+                  <label for={fieldId}>
+                    {field.label}
+                    <select
+                      id={fieldId}
+                      name={fieldName}
+                      required={isRequired}
+                    >
+                      {field.options &&
+                        field.options.map((option) => (
+                          <option value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                    </select>
+                  </label>
+                </li>
+              );
+            default:
+              return null;
+          }
+        })
+    }
+  </ul>
+
+  <!-- Honeypot Field (Hidden from Users, Visible to Bots) -->
   <input type="text" name="bot-field" style="display: none;" />
+
   <button type="submit">Submit</button>
 </form>
+
 <style>
   form {
     width: 90%;

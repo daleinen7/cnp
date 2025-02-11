@@ -1,138 +1,47 @@
 ---
 const { form } = Astro.props;
-
-// Ensure field labels are converted to safe names
-function toSlug(text: string) {
-  return text
-    .toLowerCase()
-    .replace(/\s+/g, '-')
-    .replace(/[^a-z0-9-]/g, '');
-}
 ---
 
-<form name={form.name} method="POST" data-netlify="true">
-  <input type="hidden" name="form-name" value={form.name} />
-
-  {form.headline && <h2>{form.headline}</h2>}
-
-  <ul>
-    {
-      form.formFields &&
-        form.formFields.map(
-          (
-            field: {
-              label: string;
-              type: string;
-              required?: boolean;
-              options?: { value: string; label: string }[];
-            },
-            index: number
-          ) => {
-            const isRequired = field.required ? true : false;
-            const fieldName = toSlug(field.label); // Ensure safe field name
-            const fieldId = `${fieldName}-${index}`; // Unique ID for each field
-
-            switch (field.type) {
-              case 'text':
-              case 'email':
-              case 'tel':
-              case 'number':
-              case 'date':
-                return (
-                  <li>
-                    <label for={fieldId}>
-                      {field.label}
-                      <input
-                        id={fieldId}
-                        type={field.type}
-                        name={fieldName}
-                        required={isRequired}
-                      />
-                    </label>
-                  </li>
-                );
-              case 'textarea':
-                return (
-                  <li>
-                    <label for={fieldId}>
-                      {field.label}
-                      <textarea
-                        id={fieldId}
-                        name={fieldName}
-                        required={isRequired}
-                      />
-                    </label>
-                  </li>
-                );
-              case 'checkbox':
-                return (
-                  <li>
-                    <label for={fieldId}>
-                      <input
-                        id={fieldId}
-                        type="checkbox"
-                        name={fieldName}
-                        required={isRequired}
-                      />
-                      {field.label}
-                    </label>
-                  </li>
-                );
-              case 'radio':
-                return (
-                  <li>
-                    <fieldset>
-                      <legend>{field.label}</legend>
-                      {field.options &&
-                        field.options.map((option, optIndex) => {
-                          const optionId = `${fieldName}-${optIndex}`;
-                          return (
-                            <label for={optionId}>
-                              <input
-                                id={optionId}
-                                type="radio"
-                                name={fieldName}
-                                value={option.value}
-                                required={isRequired}
-                              />
-                              {option.label}
-                            </label>
-                          );
-                        })}
-                    </fieldset>
-                  </li>
-                );
-              case 'select':
-                return (
-                  <li>
-                    <label for={fieldId}>
-                      {field.label}
-                      <select
-                        id={fieldId}
-                        name={fieldName}
-                        required={isRequired}
-                      >
-                        {field.options &&
-                          field.options.map((option) => (
-                            <option value={option.value}>
-                              {option.label}
-                            </option>
-                          ))}
-                      </select>
-                    </label>
-                  </li>
-                );
-              default:
-                return null;
-            }
-          }
-        )
-    }
-  </ul>
-
-  <!-- Honeypot Field (Hidden from Users, Visible to Bots) -->
+<h2>Contact Us Today</h2>
+<form name="contact" method="POST" data-netlify="true">
+  <input type="hidden" name="form-name" value="contact" />
+  <fieldset>
+    <legend>Name:<span class="marked-required">*</span></legend>
+    <label for="fname">First Name</label>
+    <input
+      id="fname"
+      name="fname"
+      type="text"
+      placeholder="First"
+      required
+    />
+    <label for="lname">Last Name</label>
+    <input
+      id="lname"
+      name="lname"
+      type="text"
+      placeholder="Last"
+      required
+    />
+  </fieldset>
+  <label for="email"
+    >Email:<span class="marked-required">*</span></label
+  >
+  <input
+    type="email"
+    id="email"
+    placeholder="example@gmail.com"
+    required
+  />
+  <label for="message"
+    >Comment or Message<span class="marked-required">*</span></label
+  >
+  <textarea
+    id="message"
+    name="message"
+    placeholder="Type youre message here."
+    required></textarea>
   <input type="text" name="bot-field" style="display: none;" />
-
   <button type="submit">Submit</button>
 </form>
 

@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+
+const { image, alt, imageWidth, imageHeight } = Astro.props;
+
+console.log(Astro.props);
+---
+
+<Image src={image} alt={alt} inferSize />
+
+<style>
+  img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 1rem;
+
+    @media (width > 600px) {
+      padding: 2rem;
+    }
+  }
+</style>

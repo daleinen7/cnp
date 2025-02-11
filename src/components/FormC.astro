@@ -48,7 +48,7 @@ const { form } = Astro.props;
     placeholder="Type youre message here."
     required></textarea>
   <input type="text" name="bot-field" style="display: none;" />
-  <button type="submit">Submit</button>
+  <button type="submit" class="button">Submit</button>
 </form>
 
 <style>
@@ -124,6 +124,7 @@ const { form } = Astro.props;
   button:hover {
     cursor: pointer;
   }
+
   form:has(input:user-invalid, textarea:user-invalid) button {
     color: var(--deep-red);
     background-color: var(--pale-red);

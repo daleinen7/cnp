@@ -31,6 +31,7 @@ export const page = defineType({
         { type: 'form' },
         { type: 'headline' },
         { type: 'hero' },
+        { type: 'imageBlock' },
         { type: 'mediaCards' },
         { type: 'portraitCards' },
         { type: 'sideBySide' },

@@ -35,28 +35,26 @@ const currentPath = pathname;
 </script>
 
 <header>
-  <ul id="contact">
-    <li class="desktop">
+  <div id="contact">
+    <!-- <li class="desktop">
       <a href="mailto:Info@CitizensNetworkofProtection.com">
         <span><img src={emailIcon.src} alt="decorative" /></span
         >Info@CitizensNetworkofProtection.com
       </a>
-    </li>
-    <li>
-      <a href="/" class="logo desktop"
-        ><img src={logo.src} /> Citizen's Network of Protection</a
-      >
-    </li>
-    <li class="desktop">
+    </li> -->
+    <a href="/" class="logo desktop"
+      ><img src={logo.src} /> Citizen's Network of Protection</a
+    >
+    <!-- <li class="desktop">
       <a href="tel:+18722352289">
         <span><img src={phoneIcone.src} alt="decorative" /></span>+1
         (872) 235-2289
       </a>
-    </li>
-    <li>
+    </li> -->
+    <!-- <li>
       <a href="#">Contact</a>
-    </li>
-  </ul>
+    </li> -->
+  </div>
   <nav id="menu">
     <a href="/" class="logo mobile"
       ><img src={logo.src} /> Citizen's Network of Protection</a
@@ -107,10 +105,11 @@ const currentPath = pathname;
   }
   #contact {
     display: flex;
-    justify-self: flex-end;
+    justify-content: center;
+    width: 100%;
     background: var(--black);
     color: var(--white);
-    padding: 1rem 2rem;
+    padding: 0 2rem;
   }
   #contact a {
     color: var(--white);
@@ -210,23 +209,21 @@ const currentPath = pathname;
       font-size: 1rem;
     }
     #contact a {
-      font-size: 1rem;
-      width: 20rem;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 1rem;
     }
-    ul#contact {
+    div#contact {
       flex-direction: row;
       width: 100%;
-      justify-content: space-between;
+      justify-content: center;
       justify-self: auto; /* to nullify the justify-self in mobile */
       align-items: center;
       margin: 0;
     }
 
-    #contact li span {
+    #contact span {
       display: inline-block;
       height: fit-content;
     }

@@ -1,5 +1,6 @@
 ---
 import { PortableText } from 'astro-portabletext';
+import { urlForImage } from '../sanity/lib/urlForImage';
 
 const { content } = Astro.props;
 ---
@@ -24,11 +25,36 @@ const { content } = Astro.props;
         )
       }
     </fragment>
+
+    <!-- Slot for images -->
+    <fragment slot="type">
+      {
+        ({ Component, props }: { Component: any; props: any }) => {
+          if (props?.node?._type === 'image' && props.node.asset) {
+            return (
+              <img
+                src={urlForImage(props.node.asset).width(1440).url()}
+                class="portable-text-image"
+              />
+            );
+          }
+          return <Component {...props} />;
+        }
+      }
+    </fragment>
   </PortableText>
 </div>
 
 <style>
   .paragraph {
     margin-bottom: 1rem;
+  }
+
+  .portable-text-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1rem auto;
+    border-radius: 8px;
   }
 </style>

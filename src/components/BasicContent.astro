@@ -3,6 +3,32 @@ import { PortableText } from 'astro-portabletext';
 
 const { content } = Astro.props;
 ---
+
 <div class="wrapper">
-    <PortableText value={content} />
+  <PortableText value={content}>
+    <!-- Slot for paragraphs and other block elements -->
+    <fragment slot="block">
+      {
+        ({
+          Component,
+          props,
+          children,
+        }: {
+          Component: any;
+          props: any;
+          children: any;
+        }) => (
+          <Component {...props} class="paragraph">
+            {children}
+          </Component>
+        )
+      }
+    </fragment>
+  </PortableText>
 </div>
+
+<style>
+  .paragraph {
+    margin-bottom: 1rem;
+  }
+</style>

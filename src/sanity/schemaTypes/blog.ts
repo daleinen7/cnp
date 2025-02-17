@@ -18,6 +18,11 @@ export const blog = defineType({
       },
     }),
     defineField({
+      name: 'publishedAt',
+      type: 'datetime',
+      title: 'Published At',
+    }),
+    defineField({
       name: 'featuredImage',
       type: 'image',
       title: 'Featured Image',

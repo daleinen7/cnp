@@ -1,0 +1,57 @@
+---
+import PortableText from "./PortableText.astro";
+
+interface Card {
+  title?: string;
+  body?: string;
+  ctaLink?: string;
+  linkText?: string;
+  backgroundImage?: string[];
+}
+
+const { ctaImages, ctaLink, linkText, title, body } = Astro.props;
+---
+
+<div class="cta">
+  <div class="cta-body">
+    {title && <h3>{title}</h3>}
+    {body && <PortableText portableText={body} />}
+    {
+      ctaLink && (
+        <a class="button" href={ctaLink}>
+          {linkText}
+        </a>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  .card-list {
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: 1fr;
+    padding: 2rem;
+    margin: 0 auto 3rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+    }
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  h3 {
+    font-weight: 700;
+    font-size: 1.875rem;
+    margin: 0;
+  }
+
+  .button {
+    margin-top: auto;
+    color: var(--purple);
+  }
+</style>

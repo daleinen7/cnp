@@ -1,0 +1,31 @@
+---
+import PortableText from "./PortableText.astro";
+
+interface Card {
+  title?: string;
+  body?: string;
+  ctaLink?: string;
+  linkText?: string;
+  backgroundImage?: string[];
+}
+
+const { ctaImages, ctaLink, linkText, title, body } = Astro.props;
+---
+
+<div class="cta">
+  <div class="cta-body">
+    {title && <h3>{title}</h3>}
+    {body && <PortableText portableText={body} />}
+    {
+      ctaLink && (
+        <a class="button" href={ctaLink}>
+          {linkText}
+        </a>
+      )
+    }
+  </div>
+</div>
+
+<style>
+  /*TODO: add styles here */
+</style>

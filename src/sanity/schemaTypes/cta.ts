@@ -17,28 +17,14 @@ export const cta = defineType({
       type: 'string',
     }),
     defineField({
-      name: 'linkText',
-      title: 'Link Text',
+      name: 'ctaText',
+      title: 'CTA Text',
       type: 'string'
     }),
     defineField({
-      name: 'ctaImages',
-      title: 'CTA Background Images',
-      type: 'array',
-      of: [
-        {
-          type: 'object',
-          name: 'ctaImage',
-          title: 'CTA Image',
-          fields: [
-            defineField({
-              name: 'image',
-              title: 'Image',
-              type: 'image',
-            })
-          ]
-        }
-      ]
+      name: 'ctaBirdsBg',
+      title: 'CTA Background with Birds',
+      type: 'boolean',
     })
   ],
 });

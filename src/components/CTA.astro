@@ -5,22 +5,24 @@ interface Card {
   title?: string;
   body?: string;
   ctaLink?: string;
-  linkText?: string;
-  backgroundImage?: string[];
+  ctaText?: string;
+  ctaBirdsBg?: boolean;
 }
 
-const { ctaImages, ctaLink, linkText, title, body } = Astro.props;
+const { ctaBirdsBg, ctaLink, ctaText, title, body } = Astro.props;
 ---
 
 <div class="cta">
   <div class="cta-body">
-    {title && <h3>{title}</h3>}
+    {title && <h2>{title}</h2>}
     {body && <PortableText portableText={body} />}
     {
-      ctaLink && (
+      ctaText && ctaLink ? (
         <a class="button" href={ctaLink}>
-          {linkText}
+          {ctaText}
         </a>
+      ) : (
+        ""
       )
     }
   </div>

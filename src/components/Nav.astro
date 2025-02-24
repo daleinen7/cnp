@@ -36,27 +36,17 @@ const currentPath = pathname;
 
 <header>
   <div id="contact">
-    <!-- <li class="desktop">
-      <a href="mailto:Info@CitizensNetworkofProtection.com">
-        <span><img src={emailIcon.src} alt="decorative" /></span
-        >Info@CitizensNetworkofProtection.com
+      <a tabindex="0" href="mailto:Info@CitizensNetworkofProtection.com">
+        <span class="info">Info@CitizensNetworkofProtection.com</span>
+        <span><img src={emailIcon.src} alt="decorative" /></span>
       </a>
-    </li> -->
-    <a href="/" class="logo desktop"
-      ><img src={logo.src} /> Citizen's Network of Protection</a
-    >
-    <!-- <li class="desktop">
-      <a href="tel:+18722352289">
-        <span><img src={phoneIcone.src} alt="decorative" /></span>+1
-        (872) 235-2289
+      <a tabindex="0" href="tel:+18722352289">
+        <span class="info">+1 (872) 235-2289</span>
+        <span><img src={phoneIcone.src} alt="decorative" /></span>
       </a>
-    </li> -->
-    <!-- <li>
-      <a href="#">Contact</a>
-    </li> -->
   </div>
   <nav id="menu">
-    <a href="/" class="logo mobile"
+    <a href="/" class="logo"
       ><img src={logo.src} /> Citizen's Network of Protection</a
     >
     <ul class="nav">
@@ -88,10 +78,14 @@ const currentPath = pathname;
     display: none;
   }
   .logo {
-    color: var(--black);
+    color: var(--white) !important;
     font-size: 1.25rem;
     text-decoration: none;
     font-weight: 900;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
   }
   .logo.mobile {
     display: flex;
@@ -100,30 +94,54 @@ const currentPath = pathname;
     gap: 0.5rem;
     padding: 0;
   }
-  header {
-    background: var(--black);
-  }
   #contact {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
     width: 100%;
-    background: var(--black);
-    color: var(--white);
-    padding: 0 2rem;
+    gap: 1rem;
+    z-index: 3;
+    position: fixed;
+    right: 1.5rem;
+    bottom: 5rem;
   }
   #contact a {
-    color: var(--white);
-    font-size: 1.5rem;
-    text-decoration-color: var(--white-transparent);
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--black);
+    font-size: 1rem;
+    text-decoration-color: var(--black-transparent);
     transition: text-decoration-color var(--transition);
+    background: var(--light-gray);
+    padding: 1rem;
+    height: 2rem;
+    border-radius: 2rem;
+    border: 2px solid var(--white);
   }
   #contact a:hover,
   #contact a:active,
   #contact a:focus {
-    text-decoration-color: var(--white);
+    text-decoration-color: var(--black);
+  }
+  .info {
+    width: 100%;
+    max-width: 0;
+    margin-left: -1rem;
+    margin-right: auto;
+    overflow: hidden;
+    height: 1.5rem;
+    transition: max-width var(--transition);
+  }
+  #contact a:hover .info,
+  #contact a:active .info,
+  #contact a:focus .info {
+    max-width: 500px;
+    margin-left: auto;
   }
   nav {
-    background-color: var(--white);
+    background-color: var(--black);
     padding: 1rem;
     display: flex;
     justify-content: space-between;
@@ -204,28 +222,10 @@ const currentPath = pathname;
     }
     nav {
       padding: 0;
+      flex-direction: column;
     }
     ul {
       font-size: 1rem;
-    }
-    #contact a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-    }
-    div#contact {
-      flex-direction: row;
-      width: 100%;
-      justify-content: center;
-      justify-self: auto; /* to nullify the justify-self in mobile */
-      align-items: center;
-      margin: 0;
-    }
-
-    #contact span {
-      display: inline-block;
-      height: fit-content;
     }
     nav ul {
       visibility: visible;
@@ -265,9 +265,12 @@ const currentPath = pathname;
     nav li:has(a:hover) {
       backdrop-filter: brightness(85%);
     }
-
+    #contact a {
+    font-size: 1.25rem;
+  }
     .logo {
       padding-block: 0.5rem !important;
+      gap: 1rem;
     }
     .active {
       background-color: white;

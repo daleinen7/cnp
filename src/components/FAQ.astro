@@ -1,7 +1,5 @@
 ---
 import { PortableText } from 'astro-portabletext';
-// import { Image } from 'astro:assets';
-// import arrow from '../images/arrow.svg';
 const { faqs } = Astro.props;
 ---
 
@@ -11,13 +9,13 @@ const { faqs } = Astro.props;
       <div class="faq-item">
         <button type="button" class="faq-question" data-index={idx}>
           {faq.question}
-          {/* <Image
+          <img
             class="arrow"
-            src={arrow}
+            src="arrow.svg"
             width="30"
             height="10"
             alt="arrow"
-          /> */}
+          />
         </button>
         <div id={`faq-answer-${idx}`} class="faq-answer">
           <PortableText value={faq.answer} />

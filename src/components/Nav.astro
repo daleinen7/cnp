@@ -59,7 +59,7 @@ const currentPath = pathname;
       {
         nav.navItems.map((item: NavItem) => (
           <li class={currentPath === item.href ? 'active' : ''}>
-            <a class={`nav-list`} href={`/${item.href}`}>
+            <a class={`nav-list`} href={item.href}>
               {item.name}
             </a>
           </li>

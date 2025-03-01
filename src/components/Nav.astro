@@ -36,14 +36,17 @@ const currentPath = pathname;
 
 <header>
   <div id="contact">
-      <a tabindex="0" href="mailto:Info@CitizensNetworkofProtection.com">
-        <span class="info">Info@CitizensNetworkofProtection.com</span>
-        <span><img src={emailIcon.src} alt="decorative" /></span>
-      </a>
-      <a tabindex="0" href="tel:+18722352289">
-        <span class="info">+1 (872) 235-2289</span>
-        <span><img src={phoneIcone.src} alt="decorative" /></span>
-      </a>
+    <a
+      tabindex="0"
+      href="mailto:Info@CitizensNetworkofProtection.com"
+    >
+      <span class="info">Info@CitizensNetworkofProtection.com</span>
+      <span><img src={emailIcon.src} alt="decorative" /></span>
+    </a>
+    <a tabindex="0" href="tel:+18722352289">
+      <span class="info">+1 (872) 235-2289</span>
+      <span><img src={phoneIcone.src} alt="decorative" /></span>
+    </a>
   </div>
   <nav id="menu">
     <a href="/" class="logo"
@@ -56,7 +59,7 @@ const currentPath = pathname;
       {
         nav.navItems.map((item: NavItem) => (
           <li class={currentPath === item.href ? 'active' : ''}>
-            <a class={`nav-list`} href={item.href}>
+            <a class={`nav-list`} href={`/${item.href}`}>
               {item.name}
             </a>
           </li>
@@ -267,8 +270,8 @@ const currentPath = pathname;
       backdrop-filter: brightness(85%);
     }
     #contact a {
-    font-size: 1.25rem;
-  }
+      font-size: 1.25rem;
+    }
     .logo {
       padding-block: 0.5rem !important;
       gap: 1rem;

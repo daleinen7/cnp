@@ -17,8 +17,8 @@ export const cta = defineType({
       type: 'string',
     }),
     defineField({
-      name: 'ctaText',
-      title: 'CTA Text',
+      name: 'ctaLinkText',
+      title: 'CTA Link Text',
       type: 'string'
     }),
     defineField({

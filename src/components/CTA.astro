@@ -1,15 +1,7 @@
 ---
 import PortableText from "./PortableText.astro";
 
-interface Card {
-  title?: string;
-  body?: string;
-  ctaLink?: string;
-  ctaText?: string;
-  ctaBirdsBg?: boolean;
-}
-
-const { ctaBirdsBg, ctaLink, ctaText, title, body } = Astro.props;
+const { ctaBirdsBg, ctaLink, ctaLinkText, title, body } = Astro.props;
 ---
 
 <div class="cta">
@@ -17,9 +9,9 @@ const { ctaBirdsBg, ctaLink, ctaText, title, body } = Astro.props;
     {title && <h2>{title}</h2>}
     {body && <PortableText portableText={body} />}
     {
-      ctaText && ctaLink ? (
+      ctaLinkText && ctaLink ? (
         <a class="button" href={ctaLink}>
-          {ctaText}
+          {ctaLinkText}
         </a>
       ) : (
         ""

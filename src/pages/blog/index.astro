@@ -7,12 +7,13 @@ import { loadQuery } from '../../sanity/lib/loadQuery';
 const { data: blogs }: { data: SanityDocument[] } = await loadQuery<
   SanityDocument[]
 >({
-  query: `*[_type == "blog"] {
-  excerpt,
-  slug,
-  'featuredImage': featuredImage.asset->url,
-  title
-}`,
+  query: `*[_type == "blog"] | order(publishedAt desc) {
+    excerpt,
+    slug,
+    'featuredImage': featuredImage.asset->url,
+    title,
+    publishedAt
+  }`,
 });
 ---
 

@@ -45,6 +45,13 @@ const { data: page } = await loadQuery<SanityDocument>({
         heroText,
         "heroImage": heroImage.asset->url
       },
+      _type == 'imageBlock' => {
+        _type,
+        "image": image.asset->url,
+        "imageWidth": image.asset->metadata.dimensions.width,
+        "imageHeight": image.asset->metadata.dimensions.height,
+        alt
+      },
       _type == 'portraitCards' => {
         _type,
         portraitCardList[]{

@@ -37,31 +37,38 @@ const xlsData = await fetchAndParseXLS(url);
 ---
 
 <h1>{title}</h1>
-<table>
-  <thead>
-    <tr>
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        {
+          xlsData.length > 0 &&
+            Object.keys(xlsData[0] as object).map((key) => (
+              <th>{key}</th>
+            ))
+        }
+      </tr>
+    </thead>
+    <tbody>
       {
-        xlsData.length > 0 &&
-          Object.keys(xlsData[0] as object).map((key) => (
-            <th>{key}</th>
-          ))
+        xlsData.map((row: any) => (
+          <tr>
+            {Object.values(row).map((value: any) => (
+              <td>{value}</td>
+            ))}
+          </tr>
+        ))
       }
-    </tr>
-  </thead>
-  <tbody>
-    {
-      xlsData.map((row: any) => (
-        <tr>
-          {Object.values(row).map((value: any) => (
-            <td>{value}</td>
-          ))}
-        </tr>
-      ))
-    }
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
 
 <style>
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
+  }
   /* Table Styles */
   table {
     width: 90%;
@@ -71,7 +78,6 @@ const xlsData = await fetchAndParseXLS(url);
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    overflow: hidden;
   }
 
   /* Table Header */

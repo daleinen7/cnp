@@ -18,6 +18,7 @@ import { sideBySide } from './sideBySide';
 import { spacer } from './spacer';
 import spreadSheet from './spreadSheet';
 import { blogList } from './blogList';
+import { imageBlock } from './imageBlock';
 
 export const schema = [
   page,
@@ -35,6 +36,7 @@ export const schema = [
   form,
   hero,
   headline,
+  imageBlock,
   mediaCards,
   portraitCards,
   sideBySide,

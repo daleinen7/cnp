@@ -1,0 +1,25 @@
+---
+import PortableText from './PortableText.astro';
+
+const { ctaBirdsBg, ctaLink, ctaLinkText, title, body } = Astro.props;
+---
+
+<div class="cta">
+  <div class="cta-body">
+    {title && <h2>{title}</h2>}
+    {body && <PortableText portableText={body} />}
+    {
+      ctaLinkText && ctaLink ? (
+        <a class="button" href={ctaLink}>
+          {ctaLinkText}
+        </a>
+      ) : (
+        ''
+      )
+    }
+  </div>
+</div>
+
+<style>
+  /*TODO: add styles here */
+</style>

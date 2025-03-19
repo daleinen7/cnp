@@ -2,6 +2,7 @@ import { basicContent } from './basicContent';
 import { blockContent } from './blockContent';
 import { blog } from './blog';
 import { complaintForm } from './complaintForm';
+import { cta } from './cta';
 import { ctaCards } from './ctaCards';
 import { donate } from './donate';
 import faqs from './faq';
@@ -28,6 +29,7 @@ export const schema = [
   blockContent,
   blogList,
   complaintForm,
+  cta,
   ctaCards,
   donate,
   faqs,

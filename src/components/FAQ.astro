@@ -6,10 +6,7 @@ const rawCount = faqs.sections.length;
 const columnCount = rawCount > 3 ? 2 : rawCount;
 ---
 
-<div
-  class="faqs width-wrapper"
-  style={`--col-count: ${columnCount};`}
->
+<div class="faqs width-wrapper" style={`--col-count: ${columnCount};`}>
   {
     faqs.sections.map((section: any, sectionIdx: number) => (
       <div class="section">
@@ -19,11 +16,7 @@ const columnCount = rawCount > 3 ? 2 : rawCount;
             const uniqueId = `faq-answer-${sectionIdx}-${faqIdx}`;
             return (
               <div class="faq-item">
-                <button
-                  type="button"
-                  class="faq-question"
-                  data-id={uniqueId}
-                >
+                <button type="button" class="faq-question" data-id={uniqueId}>
                   {faq.question}
                   <img
                     class="arrow"
@@ -62,12 +55,19 @@ const columnCount = rawCount > 3 ? 2 : rawCount;
 </script>
 
 <style>
+  h4 {
+    font-size: 1.875rem;
+    font-weight: bold;
+  }
   .faqs {
     display: grid;
     gap: 2rem;
     margin: 0 auto;
     padding: 1rem;
     grid-template-columns: repeat(var(--col-count), 1fr);
+  }
+  .faq-question {
+    color: #4a2791;
   }
 
   /* Mobile-first: stack everything */

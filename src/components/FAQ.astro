@@ -43,8 +43,8 @@ const columnCount = rawCount > 3 ? 2 : rawCount;
     const buttons = document.querySelectorAll('.faq-question');
     buttons.forEach((button) => {
       button.addEventListener('click', () => {
-        const id = button.getAttribute('data-id');
-        const answer = document.getElementById(id ? id : '');
+        const id = button.getAttribute('data-id') || '';
+        const answer = document.getElementById(id);
         if (answer) {
           answer.classList.toggle('open');
           button.classList.toggle('open');

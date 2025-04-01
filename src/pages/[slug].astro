@@ -11,12 +11,12 @@ import CtaCards from '../components/CtaCards.astro';
 import MediaCards from '../components/MediaCards.astro';
 import PortraitCards from '../components/PortraitCards.astro';
 import BlogList from '../components/BlogList.astro';
-import SpreadSheet from '../components/SpreadSheet.astro';
 import Form from '../components/FormS.astro';
 import Spacer from '../components/Spacer.astro';
 import Donate from '../components/Donate.astro';
 import FormC from '../components/FormC.astro';
 import ImageBlock from '../components/ImageBlock.astro';
+import SpreadSheet from '../sanity/schemaTypes/spreadSheet';
 
 export async function getStaticPaths() {
   const { data: page } = await loadQuery<SanityDocument[]>({
@@ -86,11 +86,6 @@ const { data: page } = await loadQuery<SanityDocument>({
       _type == 'spacer' => {
         _type,
         height
-      },
-      _type == 'spreadSheet' => {
-        _type,
-        "url": file.asset->url,
-        title
       },
     }
   }`,

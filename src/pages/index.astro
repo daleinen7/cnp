@@ -11,7 +11,6 @@ import CTA from "../components/CTA.astro";
 import CtaCards from "../components/CtaCards.astro";
 import MediaCards from "../components/MediaCards.astro";
 import PortraitCards from "../components/PortraitCards.astro";
-import SpreadSheet from "../components/SpreadSheet.astro";
 import FormS from "../components/FormS.astro";
 
 export async function getStaticPaths() {
@@ -69,10 +68,6 @@ const { data: page } = await loadQuery<SanityDocument>({
         _type,
         height
       },
-      _type == 'spreadSheet' => {
-        _type,
-        "url": file.asset->url
-      },
     }
   }`,
   params,
@@ -127,8 +122,6 @@ const components = page.components || [];
           );
         case "spacer":
           return <div style={{ height: component.height }} />;
-        case "spreadSheet":
-          return <SpreadSheet spreadSheet={component.spreadSheet} />;
         default:
           return null;
       }

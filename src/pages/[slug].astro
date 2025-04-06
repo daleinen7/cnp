@@ -47,6 +47,31 @@ const { data: page } = await loadQuery<SanityDocument>({
           "featuredImage": featuredImage.asset->url
         },
       },
+      _type == 'faq' => {
+        _type,
+        "faqs": {
+          "sections": sections[]{
+            sectionTitle,
+            columns[]{
+              question,
+              answer[]{
+                ...,
+                _type == 'block' => {
+                  _type,
+                  children[]{
+                    ...,
+                    _type == 'span' => {
+                      _type,
+                      marks,
+                      text
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       _type == 'headline' => {
         _type,
         headline
@@ -115,7 +140,7 @@ const components = page.components || [];
         case 'donate':
           return <Donate />;
         case 'faqs':
-          return <FAQ faqs={component.faq} />;
+          return <FAQ faqs={component} />;
         case 'form':
           return <Form form={component} />;
         case 'headline':

@@ -2,8 +2,6 @@
 import { Image } from 'astro:assets';
 
 const { image, alt, imageWidth, imageHeight } = Astro.props;
-
-console.log(Astro.props);
 ---
 
 <Image src={image} alt={alt} inferSize />

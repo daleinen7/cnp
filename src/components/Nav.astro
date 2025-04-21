@@ -18,6 +18,8 @@ const { data: nav } = await loadQuery<NavData>({
 
 const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname;
+
+console.log('NAV: ', nav);
 ---
 
 <script>
@@ -107,7 +109,7 @@ const currentPath = pathname;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
-    width: 100%;
+    /* width: 100%; */
     gap: 1rem;
     z-index: 3;
     position: fixed;
@@ -266,7 +268,7 @@ const currentPath = pathname;
       width: 100%;
     }
     nav a {
-      width:100%;
+      width: 100%;
       border-left: 1px solid var(--light-gray);
       padding: 0.25rem;
     }
@@ -281,7 +283,6 @@ const currentPath = pathname;
       gap: 1rem;
       min-width: max-content;
       margin-right: 4rem;
-      
     }
     .active {
       background-color: var(--mid-purple);

@@ -6,22 +6,43 @@ const faqs = defineType({
   type: 'object',
   fields: [
     defineField({
-      name: 'faq',
-      title: 'FAQ',
+      name: 'sections',
+      title: 'FAQ Sections',
       type: 'array',
       of: [
         {
           type: 'object',
+          name: 'faqSection',
+          title: 'FAQ Section',
           fields: [
             defineField({
-              name: 'question',
-              title: 'Question',
+              name: 'sectionTitle',
+              title: 'Section Title',
               type: 'string',
             }),
             defineField({
-              name: 'answer',
-              title: 'Answer',
-              type: 'blockContent',
+              name: 'columns',
+              title: 'Columns',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  name: 'faqItem',
+                  title: 'FAQ Item',
+                  fields: [
+                    defineField({
+                      name: 'question',
+                      title: 'Question',
+                      type: 'string',
+                    }),
+                    defineField({
+                      name: 'answer',
+                      title: 'Answer',
+                      type: 'blockContent',
+                    }),
+                  ],
+                },
+              ],
             }),
           ],
         },

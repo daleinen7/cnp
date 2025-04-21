@@ -1,24 +1,37 @@
 ---
 import { PortableText } from 'astro-portabletext';
 const { faqs } = Astro.props;
+const sectionCount = faqs.sections.length;
+const rawCount = faqs.sections.length;
+const columnCount = rawCount > 3 ? 2 : rawCount;
 ---
 
-<div class="faq">
+<div class="faqs width-wrapper" style={`--col-count: ${columnCount};`}>
   {
-    faqs.map((faq: any, idx: number) => (
-      <div class="faq-item">
-        <button type="button" class="faq-question" data-index={idx}>
-          {faq.question}
-          <img
-            class="arrow"
-            src="/arrow.svg"
-            width="30"
-            height="10"
-            alt="arrow"
-          />
-        </button>
-        <div id={`faq-answer-${idx}`} class="faq-answer">
-          <PortableText value={faq.answer} />
+    faqs.sections.map((section: any, sectionIdx: number) => (
+      <div class="section">
+        <h4>{section.sectionTitle}</h4>
+        <div class="faq">
+          {section.columns.map((faq: any, faqIdx: number) => {
+            const uniqueId = `faq-answer-${sectionIdx}-${faqIdx}`;
+            return (
+              <div class="faq-item">
+                <button type="button" class="faq-question" data-id={uniqueId}>
+                  {faq.question}
+                  <img
+                    class="arrow"
+                    src="/arrow.svg"
+                    width="30"
+                    height="10"
+                    alt="arrow"
+                  />
+                </button>
+                <div id={uniqueId} class="faq-answer">
+                  <PortableText value={faq.answer} />
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     ))
@@ -30,8 +43,8 @@ const { faqs } = Astro.props;
     const buttons = document.querySelectorAll('.faq-question');
     buttons.forEach((button) => {
       button.addEventListener('click', () => {
-        const index = button.getAttribute('data-index');
-        const answer = document.getElementById(`faq-answer-${index}`);
+        const id = button.getAttribute('data-id') || '';
+        const answer = document.getElementById(id);
         if (answer) {
           answer.classList.toggle('open');
           button.classList.toggle('open');
@@ -42,10 +55,44 @@ const { faqs } = Astro.props;
 </script>
 
 <style>
-  .faq {
-    max-width: 70.625rem;
+  h4 {
+    font-size: 1.875rem;
+    font-weight: bold;
+  }
+  .faqs {
+    display: grid;
+    gap: 2rem;
     margin: 0 auto;
     padding: 1rem;
+    grid-template-columns: repeat(var(--col-count), 1fr);
+  }
+  .faq-question {
+    color: #4a2791;
+  }
+
+  /* Mobile-first: stack everything */
+  @media (max-width: 640px) {
+    .faqs {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Medium: allow 2 columns max */
+  @media (min-width: 641px) and (max-width: 1023px) {
+    .faqs {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Large: allow 3 columns only if we clamped for it */
+  @media (min-width: 1024px) {
+    .faqs {
+      grid-template-columns: repeat(var(--col-count), 1fr);
+    }
+  }
+
+  .faq {
+    max-width: 70.625rem;
   }
 
   .faq-item {

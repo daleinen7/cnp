@@ -6,6 +6,7 @@ const { heroText, heroImage, ctaText, ctaLink } = Astro.props;
 ---
 
 <div class="background">
+  <div class="overlay"></div>
   <img src={heroImage} alt="decorative" class="full-img" />
   {
     (heroText || ctaLink) && (
@@ -29,7 +30,6 @@ const { heroText, heroImage, ctaText, ctaLink } = Astro.props;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    color: var(--base-light);
     text-align: left;
     overflow: hidden;
     color: var(--white);
@@ -41,11 +41,14 @@ const { heroText, heroImage, ctaText, ctaLink } = Astro.props;
       object-fit: cover;
       visibility: hidden;
     }
-
+    
     h2 {
       font-size: 2.75rem;
       margin-bottom: 1rem;
     }
+  }
+  .overlay {
+      display: none;
   }
   p {
     max-width: 80%;
@@ -79,8 +82,7 @@ const { heroText, heroImage, ctaText, ctaLink } = Astro.props;
   }
   .text {
     padding: 2rem;
-    border-radius: var(--radius);
-    background: rgb(0, 0, 0, 0.5);
+    color: var(--white);
   }
   .button {
     flex-basis: 75%;
@@ -96,7 +98,16 @@ const { heroText, heroImage, ctaText, ctaLink } = Astro.props;
     }
     .content {
       margin: 0;
+      z-index: 3;
     }
+    .overlay {
+      grid-column: 1/2;
+      grid-row: 1/2;
+      display: inherit;
+      opacity: 65%;
+      background: linear-gradient(0deg,#4a279100 0%, #130039 56%);
+      z-index: 2;
+  }
   }
   @media (width > 580px) {
     h2 {

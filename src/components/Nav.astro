@@ -49,10 +49,15 @@ const currentPath = pathname;
     </a>
   </div>
   <nav id="menu">
-    <a href="/" class="logo"
+    <a href="/" class="logo mobile"
       ><img src={logo.src} /> Citizen's Network of Protection</a
     >
     <ul class="nav">
+      <li class=` desktop`>
+        <a href="/" class="logo"
+          ><img src={logo.src} /> Citizen's Network of Protection</a
+        >
+      </li>
       <li class={currentPath === '/' ? 'active' : ''}>
         <a href="/" class="nav-list">Home</a>
       </li>
@@ -102,7 +107,7 @@ const currentPath = pathname;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
-    width: 100%;
+    /* width: 100%; */
     gap: 1rem;
     z-index: 3;
     position: fixed;
@@ -244,56 +249,48 @@ const currentPath = pathname;
       scale: 100%;
       box-shadow: none;
       transition: none;
-      background: linear-gradient(
-        90deg,
-        rgba(139, 106, 215, 1) 0%,
-        rgba(139, 106, 215, 1) 33%,
-        rgba(74, 39, 145, 1) 80%
-      );
-    }
-    nav li {
-      min-width: 8.4rem;
-      width: 100%;
-      text-align: center;
-      padding-block: 0.5rem;
+      background: var(--black);
+      justify-content: space-between;
     }
     .nav-list {
       color: var(--white) !important;
-      border-left: 1px solid #161616;
-      padding-block: 0.25rem !important;
       font-size: 1.0625rem;
     }
     nav ul a:hover {
       background-color: transparent;
     }
+    nav li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    nav a {
+      width: 100%;
+      border-left: 1px solid var(--light-gray);
+      padding: 0.25rem;
+    }
     nav li:has(a:hover) {
-      backdrop-filter: brightness(85%);
+      background: var(--mid-purple);
     }
     #contact a {
       font-size: 1.25rem;
     }
     .logo {
-      padding-block: 0.5rem !important;
+      padding: 0.5rem !important;
       gap: 1rem;
+      min-width: max-content;
+      margin-right: 4rem;
     }
     .active {
-      background-color: white;
+      background-color: var(--mid-purple);
       a {
-        color: var(--dark-purple) !important;
         border: none;
       }
       &:hover {
         background-color: var(--light-purple) !important;
         color: var(--black) !important;
       }
-    }
-  }
-  @media (width > 1315px) {
-    nav ul {
-      width: 75%;
-    }
-    nav li {
-      min-width: 11.6rem;
     }
   }
 </style>

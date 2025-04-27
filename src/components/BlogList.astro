@@ -27,16 +27,17 @@ const truncate = (text: string, length: number) => {
       blogList.map((card: Card) => {
         const { featuredImage, excerpt, title, slug } = card;
         return (
-          <a href={`/blog/${slug?.current}`} class="card">
-            <figure>
-              {featuredImage && <img src={featuredImage} />}
-              <figcaption>
-                {title && <h3>{title}</h3>}
-                {excerpt && <p>{excerpt}</p>}
-                {<span>Learn More</span>}
-              </figcaption>
-            </figure>
-          </a>
+          <figure
+            class="card"
+            onclick={`window.location.href='/blog/${slug?.current}'`}
+          >
+            {featuredImage && <img src={featuredImage} />}
+            <figcaption>
+              {title && <h3>{title}</h3>}
+              {excerpt && <p>{excerpt}</p>}
+              {<span>Learn More</span>}
+            </figcaption>
+          </figure>
         );
       })
   }
@@ -54,15 +55,10 @@ const truncate = (text: string, length: number) => {
   .card {
     width: 1fr;
   }
-  a {
-    margin-top: 0.5rem;
-    text-decoration: none;
-    border-radius: 0.25rem;
-    color: var(--black);
-  }
   figure {
     display: flex;
     flex-direction: column;
+    cursor: pointer;
   }
   img {
     border-radius: var(--card-radius) var(--card-radius) 0 0;
@@ -85,6 +81,11 @@ const truncate = (text: string, length: number) => {
     text-align: center;
   }
   figcaption {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 216px;
+    flex-grow: 1;
+    justify-content: space-between;
     filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
     background: var(--white);
     border-radius: 0 0 var(--card-radius) var(--card-radius);

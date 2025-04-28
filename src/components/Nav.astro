@@ -32,6 +32,15 @@ const currentPath = pathname;
     navList?.classList.remove('open');
     burger?.classList.remove('open');
   });
+
+  if (typeof window !== 'undefined') {
+    const currentPath = window.location.pathname;
+    document.querySelectorAll('.nav li').forEach((li) => {
+      if (li.dataset.href === currentPath) {
+        li.classList.add('active');
+      }
+    });
+  }
 </script>
 
 <header>
@@ -58,12 +67,12 @@ const currentPath = pathname;
           ><img src={logo.src} /> Citizen's Network of Protection</a
         >
       </li>
-      <li class={currentPath === '/' ? 'active' : ''}>
+      <li data-href="/" class={currentPath === '/' ? 'active' : ''}>
         <a href="/" class="nav-list">Home</a>
       </li>
       {
         nav.navItems.map((item: NavItem) => (
-          <li class={currentPath === item.href ? 'active' : ''}>
+          <li data-href={item.href}>
             <a class={`nav-list`} href={item.href}>
               {item.name}
             </a>

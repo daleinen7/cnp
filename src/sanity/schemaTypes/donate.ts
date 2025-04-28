@@ -11,7 +11,7 @@ export const donate = defineType({
       type: 'string',
       description:
         'This block will display the PayPal donation form on the page.',
-      readOnly: true, // 👈 Makes it read-only
+      readOnly: true,
       initialValue:
         'This block will display the PayPal donation form on the page.',
     }),

@@ -1,10 +1,8 @@
 ---
-import { Image } from 'astro:assets';
-
 const { image, alt, imageWidth, imageHeight } = Astro.props;
 ---
 
-<img src={image} alt={alt} loading="lazy" />
+<img src={image} alt={alt} loading="lazy" class="wrapper" />
 
 <style>
   img {

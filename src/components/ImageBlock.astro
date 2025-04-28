@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 const { image, alt, imageWidth, imageHeight } = Astro.props;
 ---
 
-<Image src={image} alt={alt} inferSize />
+<img src={image} alt={alt} loading="lazy" />
 
 <style>
   img {

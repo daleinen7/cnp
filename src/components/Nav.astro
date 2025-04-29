@@ -36,7 +36,7 @@ const currentPath = pathname;
   if (typeof window !== 'undefined') {
     const currentPath = window.location.pathname;
     document.querySelectorAll('.nav li').forEach((li) => {
-      if (li.dataset.href === currentPath) {
+      if ((li as HTMLLIElement).dataset.href === currentPath) {
         li.classList.add('active');
       }
     });

@@ -58,22 +58,18 @@ h6 {
   gap: 1rem;
   position: relative;
   text-decoration: none;
-  color: var(--black);
   padding: 1rem 2rem;
   font-weight: 700;
   border-radius: var(--radius);
   font-size: 1.5rem;
-  background: var(--light-gray);
+  background: var(--mid-purple);
+}
+button[type='submit'] {
   transition: filter var(--transition);
 }
-.button:hover {
+button[type='submit']:hover {
   filter: drop-shadow(
     3px 3px 0 var(--black)
-  ); /* color should match the text color of button*/
-}
-a.button:hover {
-  filter: drop-shadow(
-    3px 3px 0 var(--purple)
   ); /* color should match the text color of button*/
 }
 .wrapper {
@@ -136,13 +132,7 @@ blockquote {
 }
 /* default link styles */
 a {
-  color: var(--purple);
-  text-decoration-color: var(--purple-transparent);
-  transition: text-decoration-color var(--transition);
-}
-a:hover {
-  color: var(--purple);
-  text-decoration-color: var(--purple);
+  color: var(--white);
 }
 img {
   border-radius: var(--image-radius);

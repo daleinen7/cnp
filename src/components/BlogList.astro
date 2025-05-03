@@ -27,7 +27,7 @@ const truncate = (text: string, length: number) => {
       blogList.map((card: Card) => {
         const { featuredImage, excerpt, title, slug } = card;
         return (
-          <a href={`window.location.href='/blog/${slug?.current}'`}>
+          <a href={`/blog/${slug?.current}`}>
             <figure class="card">
               {featuredImage && <img src={featuredImage} />}
               <figcaption>

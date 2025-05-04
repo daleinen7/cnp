@@ -51,7 +51,8 @@ h6 {
   text-align: center;
 }
 
-.button {
+.button,
+button[type='submit'].button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,16 +63,14 @@ h6 {
   font-weight: 700;
   border-radius: var(--radius);
   font-size: 1.5rem;
+  color: var(--white);
   background: var(--mid-purple);
+  transition: box-shadow var(--transition);
+  &:hover {
+    box-shadow: 3px 3px 0 var(--dark-purple);
+  }
 }
-button[type='submit'] {
-  transition: filter var(--transition);
-}
-button[type='submit']:hover {
-  filter: drop-shadow(
-    3px 3px 0 var(--black)
-  ); /* color should match the text color of button*/
-}
+
 .wrapper {
   max-width: 80rem;
   margin: 0 auto;

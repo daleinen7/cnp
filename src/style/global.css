@@ -131,8 +131,13 @@ blockquote {
 }
 /* default link styles */
 a {
-  text-decoration: none;
   color: var(--mid-purple);
+  text-decoration-color: var(--purple-transparent);
+  transition: text-decoration-color var(--transition);
+}
+a:hover {
+  color: var(--mid-purple);
+  text-decoration-color: var(--mid-purple);
 }
 img {
   border-radius: var(--image-radius);

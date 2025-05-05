@@ -32,15 +32,6 @@ const currentPath = pathname;
     navList?.classList.remove('open');
     burger?.classList.remove('open');
   });
-
-  if (typeof window !== 'undefined') {
-    const currentPath = window.location.pathname;
-    document.querySelectorAll('.nav li').forEach((li) => {
-      if ((li as HTMLLIElement).dataset.href === currentPath) {
-        li.classList.add('active');
-      }
-    });
-  }
 </script>
 
 <header>
@@ -57,36 +48,47 @@ const currentPath = pathname;
       <span><img src={phoneIcone.src} alt="decorative" /></span>
     </a>
   </div>
+
   <nav id="menu">
-    <a href="/" class="logo mobile"
-      ><img src={logo.src} /> Citizen's Network of Protection</a
-    >
+    <a href="/" class="logo mobile">
+      <img src={logo.src} /> Citizen's Network of Protection
+    </a>
     <ul class="nav">
-      <li class=` desktop`>
-        <a href="/" class="logo"
-          ><img src={logo.src} /> Citizen's Network of Protection</a
-        >
+      <li class="desktop">
+        <a href="/" class="logo">
+          <img src={logo.src} /> Citizen's Network of Protection
+        </a>
       </li>
-      <li data-href="/" class={currentPath === '/' ? 'active' : ''}>
+
+      <!-- Static Home Link -->
+      <li class={currentPath === '/' ? 'active' : ''} data-href="/">
         <a href="/" class="nav-list">Home</a>
       </li>
+
+      <!-- Dynamic Nav Links -->
       {
-        nav.navItems.map((item: NavItem) => (
-          <li data-href={item.href}>
-            <a class={`nav-list`} href={item.href}>
-              {item.name}
-            </a>
-          </li>
-        ))
+        nav.navItems.map((item: NavItem) => {
+          const isActive = currentPath === item.href;
+          return (
+            <li
+              class={isActive ? 'active' : ''}
+              data-href={item.href}
+            >
+              <a class="nav-list" href={item.href}>
+                {item.name}
+              </a>
+            </li>
+          );
+        })
       }
     </ul>
+
+    <!-- Mobile Toggle Button -->
     <button
       type="button"
       class="mobile nav-toggle"
       aria-controls="menu"
-      aria-label="Click to open Navigation"
-    >
-    </button>
+      aria-label="Click to open Navigation"></button>
   </nav>
 </header>
 

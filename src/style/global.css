@@ -131,7 +131,8 @@ blockquote {
 }
 /* default link styles */
 a {
-  color: var(--white);
+  text-decoration: none;
+  color: var(--mid-purple);
 }
 img {
   border-radius: var(--image-radius);

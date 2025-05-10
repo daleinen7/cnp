@@ -65,17 +65,24 @@ const columnCount = rawCount > 3 ? 2 : rawCount;
   }
   .faqs {
     display: grid;
-    gap: 2rem;
+    gap: 4rem;
     margin: 0 auto;
     padding: 1rem;
     grid-template-columns: repeat(var(--col-count), 1fr);
+
+    @media (max-width: 50rem) {
+      gap: 2rem;
+    }
+    @media (max-width: 40rem) {
+      gap: 4rem;
+    }
   }
   .faq-question {
     color: #4a2791;
   }
 
   .section {
-    margin: 0 auto;
+    /* margin: 0 auto; */
   }
 
   /* Mobile-first: stack everything */
@@ -109,7 +116,6 @@ const columnCount = rawCount > 3 ? 2 : rawCount;
 
   .faq-question {
     margin-top: 0.25rem;
-
     width: 100%;
     text-align: left;
     padding: 0.75rem;
@@ -136,7 +142,7 @@ const columnCount = rawCount > 3 ? 2 : rawCount;
 
   .faq-answer {
     max-height: 0;
-    max-width: 68.7rem;
+    /* max-width: 68.7rem; */
     margin: 0 auto;
     overflow: hidden;
     transition:

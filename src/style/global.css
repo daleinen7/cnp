@@ -51,31 +51,26 @@ h6 {
   text-align: center;
 }
 
-.button {
+.button,
+button[type='submit'].button {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
   position: relative;
   text-decoration: none;
-  color: var(--black);
   padding: 1rem 2rem;
   font-weight: 700;
   border-radius: var(--radius);
   font-size: 1.5rem;
-  background: var(--light-gray);
-  transition: filter var(--transition);
+  color: var(--white);
+  background: var(--mid-purple);
+  transition: box-shadow var(--transition);
+  &:hover {
+    box-shadow: 3px 3px 0 var(--dark-purple);
+  }
 }
-.button:hover {
-  filter: drop-shadow(
-    3px 3px 0 var(--black)
-  ); /* color should match the text color of button*/
-}
-a.button:hover {
-  filter: drop-shadow(
-    3px 3px 0 var(--purple)
-  ); /* color should match the text color of button*/
-}
+
 .wrapper {
   max-width: 80rem;
   margin: 0 auto;
@@ -136,13 +131,13 @@ blockquote {
 }
 /* default link styles */
 a {
-  color: var(--purple);
+  color: var(--mid-purple);
   text-decoration-color: var(--purple-transparent);
   transition: text-decoration-color var(--transition);
 }
 a:hover {
-  color: var(--purple);
-  text-decoration-color: var(--purple);
+  color: var(--mid-purple);
+  text-decoration-color: var(--mid-purple);
 }
 img {
   border-radius: var(--image-radius);
